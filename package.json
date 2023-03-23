@@ -1,0 +1,35 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "npm run development",
+        "development": "mix",
+        "watch": "mix watch",
+        "watch-poll": "mix watch -- --watch-options-poll=1000",
+        "hot": "mix watch --hot",
+        "prod": "npm run production",
+        "production": "mix --production"
+    },
+    "devDependencies": {
+        "axios": "^1.1.2",
+        "bootstrap": "^4.6.0",
+        "jquery": "^3.6",
+        "laravel-mix": "^6.0.49",
+        "resolve-url-loader": "^3.1.2",
+        "sass": "^1.56.1",
+        "vue": "^3.2.47",
+        "vue-loader": "^16.8.3"
+    },
+    "dependencies": {
+        "@vue/compiler-sfc": "^3.2.47",
+        "chart.js": "^3.5.0",
+        "feather-icons": "^4.28.0",
+        "noty": "^3.2.0-beta-deprecated",
+        "popper.js": "^1.16.1",
+        "postcss-import": "^15.1.0",
+        "vue-router": "^4.1.6",
+        "vuex": "^4.1.0"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+}

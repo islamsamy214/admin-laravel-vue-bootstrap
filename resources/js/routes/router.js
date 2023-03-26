@@ -16,7 +16,7 @@ const router = createRouter({
             path: "/",
             component: WebLayout,
             children: web,
-            redirect: { name: "home" }
+            redirect: { name: "admin.dashboard" }
         },
         {
             name: "admin",

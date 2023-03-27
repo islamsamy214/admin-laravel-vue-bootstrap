@@ -22,6 +22,7 @@
 import AdminNavbar from "./../navbars/AdminNavbar.vue";
 import AdminFooter from "../user-interface/admin-ui/AdminFooter.vue";
 import SideBar from "../user-interface/admin-ui/SideBar.vue";
+import store from "../../store";
 
 export default {
   components: {
@@ -34,6 +35,7 @@ export default {
     // check if authnticated
     try {
       const user = (await axios.get("/api/admin/user")).data;
+      store.commit("adminAuth/login", user);
       next();
     } catch (error) {
       if (error.response.status == 401) {

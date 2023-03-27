@@ -107,6 +107,8 @@
 </template>
 
 <script>
+import store from "../../../store";
+
 export default {
   data() {
     return {
@@ -125,13 +127,15 @@ export default {
 
     submitUser() {
       axios
-        .post("/admin/login", {
+        .post("/api/admin/login", {
           email: this.email,
           password: this.password,
         })
         .then((response) => {
           if (response.status == 204) {
-            this.$router.push({ name: "admin.dashboard" }).then(location.reload());
+            console.log(response.data);
+            store.commit("adminAuth/login", response.data);
+            this.$router.push({ name: "admin.dashboard" });
           }
         })
         .catch((errors) => {
@@ -147,10 +151,19 @@ export default {
       //relax and try to remember it
     }, //end of forgetPassword
   }, //end of methods
-  beforeCreate() {
-    if (this.$store.getters['adminAuth/isLoggedIn']) {
-      this.$router.back();
-    } //end of checking user
-  }, //end of created
+  
+  async beforeRouteEnter(to, from, next) {
+    // check if authnticated
+    try {
+      const user = (await axios.get("/api/admin/user")).data;
+      store.commit("adminAuth/login", user);
+      next({ name: "admin.dashboard" });
+    } catch (error) {
+      if (error.response.status == 401) {
+        next();
+        // this.$router.push({ name: "admin-login" });
+      }
+    }
+  },
 };
 </script>

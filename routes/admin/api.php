@@ -8,13 +8,14 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\DashboardController;
+use Illuminate\Http\Request;
 
 //don't forget it has an admin prefix
+require __DIR__.'/auth.php';
 
-Route::group(['middleware' => 'auth'], function () {
-    //to check user in front-end
-    Route::get('user', function () {
-        return auth()->user();
+Route::group(['middleware' => 'auth:sanctum', 'as' => 'admin.'], function () {
+    Route::get('/user', function (Request $request) {
+        return $request->user();
     });
 
     //dashboard

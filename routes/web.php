@@ -1,6 +1,5 @@
 <?php
-use App\Http\Controllers\Admin\Auth\LoginController as AdminLoginController;
-use App\Http\Controllers\Admin\Auth\RegisterController as AdminRegisterController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,14 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-///////////////////admin routes//////////////////////////
-// Auth
-Route::group(['prefix' => 'admin'], function () {
-    Route::post('/login', [AdminLoginController::class, 'login']);
-    Route::post('/logout', [AdminLoginController::class, 'logout']);
-    Route::post('/register', [AdminRegisterController::class, 'register']);
-    
-});
 ///////////////////SPA routes//////////////////////////
 Route::get(
     '/{any?}',
@@ -29,3 +20,5 @@ Route::get(
         return view('index');
     }
 )->where('any', '^(?!api\/)[\/\w\.\,-]*');
+
+require __DIR__.'/auth.php';

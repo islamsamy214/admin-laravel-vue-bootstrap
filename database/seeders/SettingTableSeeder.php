@@ -9,8 +9,8 @@ class SettingTableSeeder extends Seeder
     public function run()
     {
         Setting::create([
-            'site_name'=> 'blogs', 
-            'contact_email'=>'eslamsamy019@gmail.com', 
+            'site_name'=> 'Inteligencia', 
+            'contact_email'=>'Inteligencia@mail.com', 
             'address'=>'Egypt, Alexandria'
         ]);
     }

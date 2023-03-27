@@ -62,7 +62,7 @@ export default {
 
   created() {
     axios
-      .get("/api/admin/posts/" + this.$route.params.id)
+      .get("/api/admin/posts/" + this.$route.query.id)
       .then((response) => {
         this.post = response.data;
       })
@@ -70,7 +70,7 @@ export default {
         this.pageLoading = false;
       });
 
-    if(this.$route.params.commentUpdated){
+    if(this.$route.query.commentUpdated){
       this.postUpdatedNotification();
     }
   }, //end of created

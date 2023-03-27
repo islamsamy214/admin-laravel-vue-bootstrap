@@ -35,7 +35,7 @@
                 class="dropdown-item"
                 :to="{
                   name: 'admin.comments.edit',
-                  params: { id: comment.id, postId: post.id },
+                  query: { id: comment.id, postId: post.id },
                 }"
                 >Edit</router-link
               >

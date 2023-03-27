@@ -46,7 +46,7 @@
                 class="dropdown-item"
                 :to="{
                   name: 'comments.edit',
-                  params: {
+                  query: {
                     id: comment.id,
                     postId: post.id,
                     clientId: comment.client.id,

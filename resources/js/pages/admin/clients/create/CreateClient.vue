@@ -30,7 +30,7 @@ export default {
           if (response.status == 200) {
             this.$router.push({
               name: "admin.clients",
-              params: { clientCreated: true },
+              query: { clientCreated: true },
             });
           }
         })

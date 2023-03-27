@@ -28,22 +28,22 @@ class UserController extends Controller
 
     public function getUsers()
     {
-        $users = User::where('id', '!=', 1)->latest()->paginate($this->paginate_users);
+        $users = User::where('email', '!=', 'super_admin@app.com')->latest()->paginate($this->paginate_users);
         return $users;
     } //end of getUsers
 
 
     public function getSearch($request)
     {
-        $users = User::where('id', '!=', 1)
+        $users = User::where('email', '!=', 'super_admin@app.com')
             ->where('name', 'like', '%' . $request->search . '%')
             ->orWhere('email', 'like', '%' . $request->search . '%')
             ->latest()->paginate($this->paginate_users)->toArray();
 
-        $first_user = $users['data'][0];
-        if ($first_user['id'] == 1) {
-            $users['data'] = array_slice($users['data'], 1);
-        }
+        // pop super_admin@app.com from the collercion
+        $users['data'] = array_filter($users['data'], function ($user) {
+            return $user['email'] != 'super_admin@app.com';
+        });
 
         return $users;
     } //end of getSearch
@@ -61,6 +61,7 @@ class UserController extends Controller
         if ($request->image) {
             $form_data['image'] = $this->uploadImage($request->image, 'images/users');
         }
+        dd($form_data['image']);
 
         User::create($form_data);
     } //end of store

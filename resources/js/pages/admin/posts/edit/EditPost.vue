@@ -51,12 +51,12 @@ export default {
 
     submitPost(formData) {
       axios
-        .post(`/api/admin/posts/${this.$route.params.id}`, formData)
+        .post(`/api/admin/posts/${this.$route.query.id}`, formData)
         .then((response) => {
           if (response.status == 200) {
             this.$router.push({
               name: "admin.posts",
-              params: { postUpdated: true },
+              query: { postUpdated: true },
             });
           }
         })
@@ -70,10 +70,10 @@ export default {
   }, //end of mehtods
 
   created() {
-    if (this.$route.params.id == "undefined") {
+    if (this.$route.query.id == "undefined") {
       this.$router.push({ name: "admin.posts" });
     }
-    this.fill(this.$route.params.id);
+    this.fill(this.$route.query.id);
   }, //end of created
 
   beforeRouteEnter(to, from, next) {

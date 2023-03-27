@@ -120,10 +120,10 @@ export default {
   },
   created() {
     this.fill();
-    if (this.$route.params.categoryCreated == true) {
+    if (this.$route.query.categoryCreated == true) {
       this.categoryCreatedNotification();
     }
-    if (this.$route.params.categoryUpdated == true) {
+    if (this.$route.query.categoryUpdated == true) {
       this.categoryUpdatedNotification();
     }
   },

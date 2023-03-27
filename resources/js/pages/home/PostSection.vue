@@ -19,7 +19,7 @@
           </p>
           <router-link
             class="btn btn-secondary mb-3"
-            :to="{ name: 'posts.details', params: { id: post.id } }"
+            :to="{ name: 'posts.details', query: { id: post.id } }"
             >Read More</router-link
           >
         </div>

@@ -10,9 +10,8 @@ use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
 
-Route::group(['middleware' => 'guest', 'as'=>'admin.'], function () {
+Route::group(['middleware' => 'guest', 'as' => 'admin.'], function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
         ->name('register');
 
@@ -36,11 +35,7 @@ Route::group(['middleware' => 'guest', 'as'=>'admin.'], function () {
         ->name('password.store');
 });
 
-Route::middleware('auth')->group(function () {
-    Route::get('user', function () {
-        return Auth::user();
-    })->name('user');
-
+Route::group(['middleware' => 'auth:sanctum', 'as' => 'admin.'], function () {
     Route::get('verify-email', EmailVerificationPromptController::class)
         ->name('verification.notice');
 

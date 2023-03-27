@@ -26,7 +26,7 @@ export default {
           if (response.status == 200) {
             this.$router.push({
               name: "admin.users",
-              params: { userCreated: true },
+              query: { userCreated: true },
             });
           }
         })

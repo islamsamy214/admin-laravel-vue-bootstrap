@@ -31,7 +31,7 @@ export default {
     fillData(id) {
       axios
         .get(`/api/comments/${id}/edit`, {
-          params: { client_id: this.$route.params.clientId },
+          query: { client_id: this.$route.query.clientId },
         })
         .then((response) => {
           this.oldBody = response.data.body;
@@ -46,12 +46,12 @@ export default {
 
     submitComment(formData) {
       axios
-        .post(`/api/comments/${this.$route.params.id}`, formData)
+        .post(`/api/comments/${this.$route.query.id}`, formData)
         .then((response) => {
           if (response.status == 200) {
             this.$router.push({
               name: "posts.details",
-              params: { commentUpdated: true, id: this.$route.params.postId },
+              query: { commentUpdated: true, id: this.$route.query.postId },
             });
           }
         })
@@ -65,10 +65,10 @@ export default {
   }, //end of mehtods
 
   created() {
-    if (this.$route.params.id == "undefined") {
+    if (this.$route.query.id == "undefined") {
       this.$router.push({ name: "posts" });
     }
-    this.fillData(this.$route.params.id);
+    this.fillData(this.$route.query.id);
   }, //end of created
 
   beforeRouteEnter(to, from, next) {

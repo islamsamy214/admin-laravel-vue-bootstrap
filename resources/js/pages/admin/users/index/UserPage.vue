@@ -117,10 +117,10 @@ export default {
   },
   created() {
     this.fill();
-    if (this.$route.params.userCreated == true) {
+    if (this.$route.query.userCreated) {
       this.userCreatedNotification();
     }
-    if (this.$route.params.userUpdated == true) {
+    if (this.$route.query.userUpdated) {
       this.userUpdatedNotification();
     }
   },

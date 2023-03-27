@@ -139,16 +139,16 @@ export default {
     }, //enf of Updated noty
   },
   created() {
-    if (this.$route.params.categoryId) {
-      this.submitSearch(null, this.$route.params.categoryId);
+    if (this.$route.query.categoryId) {
+      this.submitSearch(null, this.$route.query.categoryId);
     } else {
       this.fill();
     } //end of filling
 
-    if (this.$route.params.postCreated == true) {
+    if (this.$route.query.postCreated == true) {
       this.postCreatedNotification();
     }
-    if (this.$route.params.postUpdated == true) {
+    if (this.$route.query.postUpdated == true) {
       this.postUpdatedNotification();
     } //end of notifications
   },

@@ -18,7 +18,7 @@
       >
     </div>
     <div class="form-group col-md-6 col-sm-12">
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary mr-1">Submit</button>
       <router-link :to="{name:'admin.users.create'}" class="btn btn-success">Add User</router-link>
     </div>
   </form>

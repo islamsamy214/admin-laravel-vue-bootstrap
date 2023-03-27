@@ -132,9 +132,7 @@ export default {
           password: this.password,
         })
         .then((response) => {
-          if (response.status == 204) {
-            console.log(response.data);
-            store.commit("adminAuth/login", response.data);
+          if (response.status == 200) {
             this.$router.push({ name: "admin.dashboard" });
           }
         })

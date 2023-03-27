@@ -15,7 +15,7 @@
           }}
         </p>
         <router-link
-          :to="{ name: 'posts.details', params: { id: postId } }"
+          :to="{ name: 'posts.details', query: { id: postId } }"
           class="card-link"
           >View Post</router-link
         >

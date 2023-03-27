@@ -34,6 +34,13 @@ class User extends Authenticatable
     ];
 
     /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array<int, string>
+     */
+    protected $appends = ['image_path'];
+
+    /**
      * The attributes that should be cast.
      *
      * @var array<string, string>
@@ -41,4 +48,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function getImagePathAttribute()
+    {
+        return asset($this->image);
+    } //end of retreving image directly
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    } //end of posts relation
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    } //end of comments relation
 }

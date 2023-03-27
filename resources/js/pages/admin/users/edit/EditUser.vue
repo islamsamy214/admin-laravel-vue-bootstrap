@@ -1,13 +1,13 @@
 <template>
   <div>
     <loading-ui v-if="pageLoading"></loading-ui>
-    <edit-form 
-    v-else
-    :oldName="oldName"
-    :oldEmail="oldEmail"
-    :errors="errors"
-    :isLoading="isLoading"
-    @submitUser="submitUser"
+    <edit-form
+      v-else
+      :oldName="oldName"
+      :oldEmail="oldEmail"
+      :errors="errors"
+      :isLoading="isLoading"
+      @submitUser="submitUser"
     ></edit-form>
   </div>
 </template>
@@ -20,8 +20,8 @@ export default {
   data() {
     return {
       pageLoading: true,
-      oldName:null,
-      oldEmail:null,
+      oldName: null,
+      oldEmail: null,
       errors: null,
       isLoading: false,
     };
@@ -41,16 +41,16 @@ export default {
         .catch((error) => {
           console.log(error);
         });
-    },//end of fill data
+    }, //end of fill data
 
     submitUser(formData) {
       axios
-        .post(`/api/admin/users/${this.$route.params.id}`, formData)
+        .post(`/api/admin/users/${this.$route.query.id}`, formData)
         .then((response) => {
           if (response.status == 200) {
             this.$router.push({
               name: "admin.users",
-              params: { userUpdated: true },
+              query: { userUpdated: true },
             });
           }
         })
@@ -64,18 +64,10 @@ export default {
   }, //end of mehtods
 
   created() {
-    if (this.$route.params.id == "undefined") {
+    if (this.$route.query.id == undefined) {
       this.$router.push({ name: "admin.users" });
     }
-    this.fill(this.$route.params.id);
+    this.fill(this.$route.query.id);
   }, //end of created
-
-  beforeRouteEnter(to, from, next) {
-    if (from.name == "admin.users") {
-      next();
-    } else {
-      next({ name: "admin.users" });
-    }
-  }, //end of bforeCreate
 };
 </script>

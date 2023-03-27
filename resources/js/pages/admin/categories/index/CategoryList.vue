@@ -21,7 +21,7 @@
               class="btn btn-warning ml-1 mt-1"
               :to="{
                 name: 'admin.categories.edit',
-                params: { id: category.id },
+                query: { id: category.id },
               }"
               >Edit</router-link
             >
@@ -33,7 +33,7 @@
             </button>
             <router-link
               class="btn btn-primary ml-1 mt-1"
-              :to="{ name: 'admin.posts', params: { categoryId: category.id } }"
+              :to="{ name: 'admin.posts', query: { categoryId: category.id } }"
               >Show Posts</router-link
             >
           </td>

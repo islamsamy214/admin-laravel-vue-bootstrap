@@ -27,7 +27,7 @@
           <td>
             <router-link
               class="btn btn-warning ml-1 mt-1"
-              :to="{ name: 'admin.clients.edit', params: { id: client.id } }"
+              :to="{ name: 'admin.clients.edit', query: { id: client.id } }"
               >Edit</router-link
             >
             <button

@@ -25,14 +25,14 @@
           </button>
           <router-link
             class="btn btn-warning mb-1 ml-1"
-            :to="{ name: 'admin.comments.edit', params: { id: comment.id, postId: comment.post_id } }"
+            :to="{ name: 'admin.comments.edit', query: { id: comment.id, postId: comment.post_id } }"
             >Edit</router-link
           >
           <router-link
             class="btn btn-primary mb-1 ml-1"
             :to="{
               name: 'admin.posts.details',
-              params: { id: comment.post_id },
+              query: { id: comment.post_id },
             }"
             >show post</router-link
           >
@@ -56,7 +56,7 @@
             class="btn btn-primary mb-1 ml-1"
             :to="{
               name: 'admin.posts.details',
-              params: { id: comment.post_id },
+              query: { id: comment.post_id },
             }"
             >show post</router-link
           >

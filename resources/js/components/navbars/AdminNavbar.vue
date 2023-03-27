@@ -47,7 +47,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-
+import store from '../../store';
 export default {
   data() {
     return {
@@ -64,10 +64,10 @@ export default {
 
   methods: {
     logout() {
-      axios.post("/admin/logout", this.user).then((response) => {
-        this.$store.commit("logout");
-        if (response.status == 204) {
-          this.$router.push({ name: "home" }).then(location.reload());
+      axios.post("/api/admin/logout", this.user).then((response) => {
+        if (response.status == 200) {
+          store.commit("adminAuth/logout");
+          this.$router.push({ name: "admin.login" });
         }
       });
     }, //end of logout

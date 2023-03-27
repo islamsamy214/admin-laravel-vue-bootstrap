@@ -44,12 +44,12 @@ export default {
 
     submitComment(formData) {
       axios
-        .post(`/api/admin/comments/${this.$route.params.id}`, formData)
+        .post(`/api/admin/comments/${this.$route.query.id}`, formData)
         .then((response) => {
           if (response.status == 200) {
             this.$router.push({
               name: "admin.posts.details",
-              params: { commentUpdated: true, id: this.$route.params.postId },
+              query: { commentUpdated: true, id: this.$route.query.postId },
             });
           }
         })
@@ -63,10 +63,10 @@ export default {
   }, //end of mehtods
 
   created() {
-    if (this.$route.params.id == "undefined") {
+    if (this.$route.query.id == "undefined") {
       this.$router.push({ name: "admin.comments" });
     }
-    this.fillData(this.$route.params.id);
+    this.fillData(this.$route.query.id);
   }, //end of created
 
   beforeRouteEnter(to, from, next) {

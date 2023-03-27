@@ -44,12 +44,12 @@ export default {
 
     submitCategory(formData) {
       axios
-        .post(`/api/admin/categories/${this.$route.params.id}`, formData)
+        .post(`/api/admin/categories/${this.$route.query.id}`, formData)
         .then((response) => {
           if (response.status == 200) {
             this.$router.push({
               name: "admin.categories",
-              params: { categoryUpdated: true },
+              query: { categoryUpdated: true },
             });
           }
         })
@@ -63,10 +63,10 @@ export default {
   }, //end of mehtods
 
   created() {
-    if (this.$route.params.id == "undefined") {
+    if (this.$route.query.id == "undefined") {
       this.$router.push({ name: "admin.categories" });
     }
-    this.fillData(this.$route.params.id);
+    this.fillData(this.$route.query.id);
   }, //end of created
 
   beforeRouteEnter(to, from, next) {

@@ -120,10 +120,10 @@ export default {
   },
   created() {
     this.fill();
-    if (this.$route.params.commentCreated == true) {
+    if (this.$route.query.commentCreated == true) {
       this.commentCreatedNotification();
     }
-    if (this.$route.params.commentUpdated == true) {
+    if (this.$route.query.commentUpdated == true) {
       this.commentUpdatedNotification();
     }
   },

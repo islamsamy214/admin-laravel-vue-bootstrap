@@ -93,7 +93,7 @@ export default {
     fillComment() {
       let formData = new FormData();
       formData.append("body", this.body);
-      formData.append("post_id", this.$route.params.postId);
+      formData.append("post_id", this.$route.query.postId);
       formData.append("client_id", this.user.id);
       formData.append("_method", "PUT");
 

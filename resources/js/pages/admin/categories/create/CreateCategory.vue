@@ -26,7 +26,7 @@ export default {
           if (response.status == 200) {
             this.$router.push({
               name: "admin.categories",
-              params: { categoryCreated: true },
+              query: { categoryCreated: true },
             });
           }
         })

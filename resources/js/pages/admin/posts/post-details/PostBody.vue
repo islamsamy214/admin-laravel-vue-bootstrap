@@ -13,7 +13,7 @@
         <div class="d-inline float-right">
           <router-link
             class="btn btn-warning ml-1 mt-1"
-            :to="{ name: 'admin.posts.edit', params: { id: post.id } }"
+            :to="{ name: 'admin.posts.edit', query: { id: post.id } }"
             >Edit</router-link
           >
           <button class="btn btn-danger ml-1 mt-1" @click="deletePost(post.id)">

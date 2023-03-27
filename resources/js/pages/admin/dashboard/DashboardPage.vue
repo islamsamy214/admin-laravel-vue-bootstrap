@@ -17,7 +17,7 @@ export default {
       axios
         .get("/api/admin/dashboard")
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
         })
         .then(() => {
           this.pageLoading = false;

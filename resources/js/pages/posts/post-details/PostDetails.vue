@@ -33,7 +33,7 @@ export default {
   methods: {
     fillPost() {
       axios
-        .get("/api/posts/" + this.$route.params.id)
+        .get("/api/posts/" + this.$route.query.id)
         .then((response) => {
           this.post = response.data;
         })
@@ -70,10 +70,10 @@ export default {
   }, //end of methods
 
   created() {
-    if (this.$route.params.id == "undefined") {
+    if (this.$route.query.id == "undefined") {
       this.$router.push({ name: "posts" });
     }
-    if (this.$route.params.commentUpdated) {
+    if (this.$route.query.commentUpdated) {
       this.postUpdatedNotification();
     }
 

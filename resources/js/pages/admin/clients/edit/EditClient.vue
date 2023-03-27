@@ -44,12 +44,12 @@ export default {
 
     submitClient(formData) {
       axios
-        .post(`/api/admin/clients/${this.$route.params.id}`, formData)
+        .post(`/api/admin/clients/${this.$route.query.id}`, formData)
         .then((response) => {
           if (response.status == 200) {
             this.$router.push({
               name: "admin.clients",
-              params: { clientUpdated: true },
+              query: { clientUpdated: true },
             });
           }
         })
@@ -63,10 +63,10 @@ export default {
   }, //end of mehtods
 
   created() {
-    if (this.$route.params.id == "undefined") {
+    if (this.$route.query.id == "undefined") {
       this.$router.push({ name: "admin.clients" });
     }
-    this.fill(this.$route.params.id);
+    this.fill(this.$route.query.id);
   }, //end of created
 
   beforeRouteEnter(to, from, next) {

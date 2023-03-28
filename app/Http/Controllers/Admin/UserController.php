@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreUserRequest;
-use App\Traits\ImageTrait;
+use App\Http\Requests\Admin\UpdateUserRequest;
+use App\Http\Traits\ImageTrait;
 
 class UserController extends Controller
 {
@@ -51,17 +52,12 @@ class UserController extends Controller
 
     public function store(StoreUserRequest $request)
     {
-        $request->validated();
-
         //encrypt password
         $form_data = $request->except(['password', 'password_confirmation', 'image']);
         $form_data['password'] = bcrypt($request->password);
 
         //image uploading
-        if ($request->image) {
-            $form_data['image'] = $this->uploadImage($request->image, 'images/users');
-        }
-        dd($form_data['image']);
+        $request->image ? $form_data['image'] = $this->img($request->image, 'images/users/') : '';
 
         User::create($form_data);
     } //end of store
@@ -73,25 +69,18 @@ class UserController extends Controller
     } //end of edit
 
 
-    public function update(Request $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'image' => ['mimes:jpeg,jpg,png,gif', 'max:2000'],
-        ]);
-
         //encrypt password
         $form_data = $request->except(['password', 'password_confirmation', 'image']);
         $form_data['password'] = bcrypt($request->password);
 
         //image uploading
         if ($request->image) {
-            if ($user->image != 'default.jpg') {
-                $this->deleteImage($user->image, 'users/');
-            }
-            $form_data['image'] = $this->uploadImage($request->image, 'images/users');
+            $user->image ? $this->deleteImg($user->image) : '';
+            $form_data['image'] = $this->img($request->image, 'images/users/');
+        } else {
+            $form_data['image'] = $user->image;
         }
 
         $user->update($form_data);
@@ -100,9 +89,7 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
-        if ($user->image != 'default.jpg') {
-            $this->deleteImage($user->image, 'users/');
-        }
+        $user->image != 'images/default.jpg' ? $this->deleteImg($user->image) : '';
         $user->delete();
     } //end of destroy
 }

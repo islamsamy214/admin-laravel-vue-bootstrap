@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Setting;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\StoreSettingRequest;
+use App\Http\Requests\Admin\UpdateSettingRequest;
 
 class SettingController extends Controller
 {
@@ -15,9 +15,8 @@ class SettingController extends Controller
     } //end of retreve
 
 
-    public function update(StoreSettingRequest $request)
+    public function update(UpdateSettingRequest $request)
     {
-        $request->validated();
         Setting::first()->update($request->all());
     } // end of update
 

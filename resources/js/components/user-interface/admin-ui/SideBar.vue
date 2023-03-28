@@ -9,7 +9,7 @@
               active: this.$route.fullPath.split('/')[2] == 'dashboard',
             }"
             :to="{ name: 'admin.dashboard' }"
-          >
+          > 
             Dashboard <span class="sr-only">(current)</span>
           </router-link>
         </li>
@@ -41,17 +41,6 @@
             Users
           </router-link>
         </li>
-        <li class="nav-item">
-          <router-link
-            class="nav-link"
-            :to="{ name: 'admin.clients' }"
-            :class="{
-              active: this.$route.fullPath.split('/')[2] == 'clients',
-            }"
-          >
-            Clients
-          </router-link>
-        </li>
       </ul>
 
       <h6
@@ -60,7 +49,7 @@
         <span>Pages</span>
       </h6>
       <ul class="nav flex-column mb-2">
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <router-link
             class="nav-link"
             :to="{ name: 'admin.categories' }"
@@ -70,29 +59,7 @@
           >
             Categories
           </router-link>
-        </li>
-        <li class="nav-item">
-          <router-link
-            class="nav-link"
-            :to="{ name: 'admin.posts' }"
-            :class="{
-              active: this.$route.fullPath.split('/')[2] == 'posts',
-            }"
-          >
-            Blogs
-          </router-link>
-        </li>
-        <li class="nav-item">
-          <router-link
-            class="nav-link"
-            :to="{ name: 'admin.comments' }"
-            :class="{
-              active: this.$route.fullPath.split('/')[2] == 'comments',
-            }"
-          >
-            Comments
-          </router-link>
-        </li>
+        </li> -->
       </ul>
     </div>
   </div>

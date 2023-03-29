@@ -6,6 +6,8 @@ import CreateUser from "./../pages/admin/users/create/CreateUser.vue";
 import EditUser from "./../pages/admin/users/edit/EditUser.vue";
 // settings imports
 import SettingPage from "./../pages/admin/settings/SettingPage.vue";
+// home page imports
+import HomePage from "./../pages/admin/home/HomePage.vue";
 
 const admin = [
     ////////////////////////////////// admin routes ////////////////////////////
@@ -39,6 +41,12 @@ const admin = [
         name: "admin.settings",
         path: "settings",
         component: SettingPage,
+    },
+    //home page
+    {
+        name: "admin.home",
+        path: "home",
+        component: HomePage,
     }
 ];
 

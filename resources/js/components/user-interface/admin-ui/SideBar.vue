@@ -9,7 +9,7 @@
               active: this.$route.fullPath.split('/')[2] == 'dashboard',
             }"
             :to="{ name: 'admin.dashboard' }"
-          > 
+          >
             Dashboard <span class="sr-only">(current)</span>
           </router-link>
         </li>
@@ -49,17 +49,17 @@
         <span>Pages</span>
       </h6>
       <ul class="nav flex-column mb-2">
-        <!-- <li class="nav-item">
+        <li class="nav-item">
           <router-link
             class="nav-link"
-            :to="{ name: 'admin.categories' }"
+            :to="{ name: 'admin.home' }"
             :class="{
-              active: this.$route.fullPath.split('/')[2] == 'categories',
+              active: this.$route.fullPath.split('/')[2] == 'home',
             }"
           >
-            Categories
+            Home page
           </router-link>
-        </li> -->
+        </li>
       </ul>
     </div>
   </div>

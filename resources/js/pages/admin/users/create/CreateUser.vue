@@ -24,9 +24,14 @@ export default {
         .post("/api/admin/users", formData)
         .then((response) => {
           if (response.status == 200) {
+            new Noty({
+              type: "success",
+              layout: "topRight",
+              timeout: "2000",
+              text: response.data,
+            }).show();
             this.$router.push({
               name: "admin.users",
-              query: { userCreated: true },
             });
           }
         })

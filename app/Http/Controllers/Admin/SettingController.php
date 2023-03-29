@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Setting;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\UpdateSettingRequest;
+use App\Http\Requests\Admin\Setting\UpdateSettingRequest;
 
 class SettingController extends Controller
 {

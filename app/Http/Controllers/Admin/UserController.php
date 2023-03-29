@@ -4,11 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\StoreUserRequest;
-use App\Http\Requests\Admin\UpdateUserRequest;
 use App\Http\Traits\ImageTrait;
+use App\Http\Requests\Admin\User\StoreUserRequest;
+use App\Http\Requests\Admin\User\UpdateUserRequest;
 
 class UserController extends Controller
 {
@@ -60,6 +59,7 @@ class UserController extends Controller
         $request->image ? $form_data['image'] = $this->img($request->image, 'images/users/') : '';
 
         User::create($form_data);
+        return response()->json(__('User Created Successfully'));
     } //end of store
 
 
@@ -82,8 +82,8 @@ class UserController extends Controller
         } else {
             $form_data['image'] = $user->image;
         }
-
         $user->update($form_data);
+        return response()->json(__('User Updated Successfully'));
     } //end of update
 
 

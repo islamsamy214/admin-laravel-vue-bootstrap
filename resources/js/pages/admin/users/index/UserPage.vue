@@ -96,33 +96,9 @@ export default {
           this.error = errors.response.data;
         }); //end of axios request
     }, //end of fill function
-
-    userCreatedNotification() {
-      new Noty({
-        type: "success",
-        layout: "topRight",
-        timeout: "2000",
-        text: "User Added",
-      }).show();
-    }, //enf of creating noty
-
-    userUpdatedNotification() {
-      new Noty({
-        type: "success",
-        layout: "topRight",
-        timeout: "2000",
-        text: "User Updated",
-      }).show();
-    }, //enf of Updated noty
   },
   created() {
     this.fill();
-    if (this.$route.query.userCreated) {
-      this.userCreatedNotification();
-    }
-    if (this.$route.query.userUpdated) {
-      this.userUpdatedNotification();
-    }
   },
 };
 </script>

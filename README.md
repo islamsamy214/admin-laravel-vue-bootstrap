@@ -4,12 +4,6 @@ This template is totally free made for multiple bloggers, it is built with PHP L
   <img src="https://github.com/islamsamy214/admin-laravel-vue-bootstrap/blob/master/public/admin-screenshot.png?raw=true" alt="alt text">
 </p>
 
-# For donation
-https://www.buymeacoffee.com/islamsamy
-<p align="center">
-  <img src="https://github.com/islamsamy214/admin-laravel-vue-bootstrap/blob/master/public/bmc_qr.png?raw=true" width="144" alt="alt text">
-</p>
-
 # How to install
 first git clone of the repo then intiate a database (MySql preferred) with name "blogs" then run the following commands
 ```
@@ -49,3 +43,8 @@ or
 ```
 npm run prod
 ```
+# For donation
+https://www.buymeacoffee.com/islamsamy
+<p align="center">
+  <img src="https://github.com/islamsamy214/admin-laravel-vue-bootstrap/blob/master/public/bmc_qr.png?raw=true" width="144" alt="alt text">
+</p>

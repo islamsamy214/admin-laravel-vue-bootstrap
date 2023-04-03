@@ -5,8 +5,6 @@ This template is built with PHP Laravel and Vue.js for SPA web application. It's
 <p align="center">
   <img src="https://github.com/islamsamy214/admin-laravel-vue-bootstrap/blob/master/public/admin-screenshot.png?raw=true" alt="Screenshot of Admin Dashboard">
 </p>
-  <img src="https://github.com/islamsamy214/admin-laravel-vue-bootstrap/blob/master/public/admin-screenshot.png?raw=true" alt="alt text">
-</p>
 
 ## Installation Steps
 

@@ -1,12 +1,13 @@
 # Admin Dashboard
 This template is totally free made for multiple bloggers, it is built with PHP Laravel, and VueJs (SPA web application)
 <p align="center">
-  <img src="https://github.com/islamsamy214/admin-laravel-vue-bootstrap/blob/master/public/bmc_qr.png?raw=true" alt="alt text">
+  <img src="https://github.com/islamsamy214/admin-laravel-vue-bootstrap/blob/master/public/admin-screenshot.png?raw=true" alt="alt text">
 </p>
+
 # For donation
 https://www.buymeacoffee.com/islamsamy
 <p align="center">
-  <img src="https://github.com/islamsamy214/admin-laravel-vue-bootstrap/blob/master/public/admin-screenshot.png?raw=true" alt="alt text">
+  <img src="https://github.com/islamsamy214/admin-laravel-vue-bootstrap/blob/master/public/bmc_qr.png?raw=true" width="360" alt="alt text">
 </p>
 
 # How to install

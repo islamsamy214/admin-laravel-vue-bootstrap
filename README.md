@@ -1,11 +1,19 @@
 # Admin Dashboard
-This template is totally free made for multiple bloggers, it is built with PHP Laravel, and VueJs (SPA web application)
+
+This template is built with PHP Laravel and Vue.js for SPA web application. It's free to use and can be used by multiple bloggers.
+
 <p align="center">
+  <img src="https://github.com/islamsamy214/admin-laravel-vue-bootstrap/blob/master/public/admin-screenshot.png?raw=true" alt="Screenshot of Admin Dashboard">
+</p>
   <img src="https://github.com/islamsamy214/admin-laravel-vue-bootstrap/blob/master/public/admin-screenshot.png?raw=true" alt="alt text">
 </p>
 
-# How to install
-first git clone of the repo then intiate a database (MySql preferred) with name "blogs" then run the following commands
+## Installation Steps
+
+1. Clone the repository.
+2. Create a MySQL database with name "blogs".
+3. Run the following commands:
+
 ```
 composer install
 ```
@@ -15,35 +23,46 @@ cat .env.example > .env
 ```
 php artisan key:generate
 ```
-don't forget to set the database on your machine and customize its vars in the .env file
+
+4. Customize the vars in the `.env` file with your database info.
+5. Run migration and seed:
+
 ```
 php artisan migrate --seed
 ```
+
+6. Install npm packages and build assets:
+
 ```
-npm install && npm run dev
+npm install && npm run production
+
 ```
+
+7. Start the application:
+
 ```
 php artisan serve
 ```
-and open this url on your browser `127.0.0.1:8000`
 
-# For Development
+and open this URL in your browser `127.0.0.1:8000`
+
+## Development
+
+For development, you can run:
+
 ```
 npm run watch
 ```
+
 or 
+
 ```
 npm run hot
 ```
-# For Production
-```
-npm run production
-```
-or 
-```
-npm run prod
-```
-# For Donation
+
+## Donation
+
+If you find this helpful, consider buying me a coffee :)
 
 <center>
 

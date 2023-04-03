@@ -43,8 +43,10 @@ or
 ```
 npm run prod
 ```
-# For donation
-https://www.buymeacoffee.com/islamsamy
-<p align="center">
-  <img src="https://github.com/islamsamy214/admin-laravel-vue-bootstrap/blob/master/public/bmc_qr.png?raw=true" width="240" alt="alt text">
-</p>
+# For Donation
+
+<center>
+
+[![QR Code for Donation](https://github.com/islamsamy214/admin-laravel-vue-bootstrap/blob/master/public/bmc_qr.png?raw=true)](https://www.buymeacoffee.com/islamsamy)
+
+</center>

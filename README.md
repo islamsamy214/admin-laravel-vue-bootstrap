@@ -9,15 +9,17 @@ This template is built with PHP Laravel and Vue.js for SPA web application. It's
 ## Installation Steps
 
 1. Clone the repository.
-2. Create a MySQL database with name "blogs".
+2. Create a MySQL database with your favorite name ex:"blogs".
 3. Run the following commands:
 
 ```
 composer install
 ```
+
 ```
 cat .env.example > .env
 ```
+
 ```
 php artisan key:generate
 ```
@@ -43,6 +45,7 @@ php artisan serve
 ```
 
 and open this URL in your browser `127.0.0.1:8000`
+use this these credentials for login email: `super_admin@app.com` pass: `123456789`
 
 ## Development
 
@@ -52,7 +55,7 @@ For development, you can run:
 npm run watch
 ```
 
-or 
+or
 
 ```
 npm run hot

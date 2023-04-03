@@ -1,5 +1,11 @@
+# For donation
+https://www.buymeacoffee.com/islamsamy
+<p align="center">
+  <img src="https://github.com/islamsamy214/admin-laravel-vue-bootstrap/blob/master/bmc_qr.png?raw=true" alt="alt text">
+</p>
+
 # Admin Dashboard
-This template is free made for multiple bloggers, it is built with PHP Laravel, and VueJs (SPA web application)
+This template is totally free made for multiple bloggers, it is built with PHP Laravel, and VueJs (SPA web application)
 # How to install
 first git clone of the repo then intiate a database (MySql preferred) with name "blogs" then run the following commands
 ```

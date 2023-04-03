@@ -46,5 +46,5 @@ npm run prod
 # For donation
 https://www.buymeacoffee.com/islamsamy
 <p align="center">
-  <img src="https://github.com/islamsamy214/admin-laravel-vue-bootstrap/blob/master/public/bmc_qr.png?raw=true" width="144" alt="alt text">
+  <img src="https://github.com/islamsamy214/admin-laravel-vue-bootstrap/blob/master/public/bmc_qr.png?raw=true" width="240" alt="alt text">
 </p>

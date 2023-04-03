@@ -7,7 +7,7 @@ This template is totally free made for multiple bloggers, it is built with PHP L
 # For donation
 https://www.buymeacoffee.com/islamsamy
 <p align="center">
-  <img src="https://github.com/islamsamy214/admin-laravel-vue-bootstrap/blob/master/public/bmc_qr.png?raw=true" width="360" alt="alt text">
+  <img src="https://github.com/islamsamy214/admin-laravel-vue-bootstrap/blob/master/public/bmc_qr.png?raw=true" width="144" alt="alt text">
 </p>
 
 # How to install

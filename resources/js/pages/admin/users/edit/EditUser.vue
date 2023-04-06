@@ -44,6 +44,7 @@ export default {
     }, //end of fill data
 
     submitUser(formData) {
+      this.isLoading = true;
       axios
         .post(`/api/admin/users/${this.$route.query.id}`, formData)
         .then((response) => {

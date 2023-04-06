@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Traits\ImageTrait;
 use App\Http\Requests\Admin\User\StoreUserRequest;
 use App\Http\Requests\Admin\User\UpdateUserRequest;
+use App\Mail\TestMail;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -58,7 +60,11 @@ class UserController extends Controller
         //image uploading
         $request->image ? $form_data['image'] = $this->img($request->image, 'images/users/') : '';
 
-        User::create($form_data);
+        $user = User::create($form_data);
+
+        // send test mail to user
+        Mail::to($user)->send(new TestMail($user));
+
         return response()->json(__('User Created Successfully'));
     } //end of store
 

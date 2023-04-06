@@ -7,6 +7,7 @@
     ></create-form>
   </div>
 </template>
+
 <script>
 import CreateForm from "./CreateForm.vue";
 export default {
@@ -20,6 +21,7 @@ export default {
 
   methods: {
     submitUser(formData) {
+      this.isLoading = true;
       axios
         .post("/api/admin/users", formData)
         .then((response) => {

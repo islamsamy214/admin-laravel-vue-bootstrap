@@ -10,7 +10,10 @@ const mix = require("laravel-mix");
  |
  */
 mix.js("resources/js/app.js", "public/js")
-    .sourceMaps(true)
+    .autoload({
+        jquery: ["$", "window.jQuery"],
+    })
+    .sourceMaps()
     .sass("resources/sass/app.scss", "public/css")
-    .vue()
+    .vue({ version: 3 })
     .disableNotifications();

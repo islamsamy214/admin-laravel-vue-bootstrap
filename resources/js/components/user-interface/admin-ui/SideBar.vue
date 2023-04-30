@@ -27,6 +27,14 @@
             Users
           </router-link>
         </li>
+
+        <li class="nav-item">
+          <router-link class="nav-link" :to="{ name: 'admin.teams' }" :class="{
+              active: this.$route.fullPath.split('/')[2] == 'teams',
+            }">
+            Teams
+          </router-link>
+        </li>
       </ul>
     </div>
   </div>

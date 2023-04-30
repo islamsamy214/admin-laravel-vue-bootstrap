@@ -1,10 +1,7 @@
 <template>
   <div>
     <loading-ui v-if="pageLoading"></loading-ui>
-    <table
-      class="table table-striped table-responsive-sm table-responsive-md"
-      v-else
-    >
+    <table class="table table-striped table-responsive-sm table-responsive-md" v-else>
       <thead>
         <tr>
           <th scope="col">Image</th>
@@ -16,24 +13,14 @@
       <tbody>
         <tr v-for="user in users" :key="user.id">
           <td>
-            <img
-              :src="user.image_path"
-              class="img-thumbnail"
-              style="width: 40px; max-height: 40px"
-            />
+            <img :src="user.image_path" class="img-thumbnail" style="width: 40px; max-height: 40px" />
           </td>
           <td>{{ user.name }}</td>
           <td>{{ user.email }}</td>
           <td>
-            <router-link
-              class="btn btn-warning ml-1 mt-1"
-              :to="{ name: 'admin.users.edit', query: { id: user.id } }"
-              >Edit</router-link
-            >
-            <button
-              class="btn btn-danger ml-1 mt-1"
-              @click="deleteUser(user.id)"
-            >
+            <router-link class="btn btn-warning ml-1 mt-1"
+              :to="{ name: 'admin.users.edit', query: { id: user.id } }">Edit</router-link>
+            <button class="btn btn-danger ml-1 mt-1" @click="deleteUser(user.id)">
               Delete
             </button>
           </td>
@@ -48,6 +35,7 @@ export default {
   emits: ["userDeleted"],
   methods: {
     deleteUser(id) {
+      let __this = this;
       var deleteConfirmation = new Noty({
         layout: "center",
         killer: true,
@@ -76,7 +64,14 @@ export default {
           .delete(`/api/admin/users/${id}`)
           .then((response) => {
             if (response.status == 200) {
-              location.reload();
+              __this.$emit("userDeleted", id);
+              deleteConfirmation.close();
+              new Noty({
+                layout: "topRight",
+                text: "User Deleted Successfully",
+                type: "success",
+                timeout: 2000,
+              }).show();
             }
           })
           .catch((error) => {

@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\StoreRoleRequest;
-use App\Http\Requests\UpdateRoleRequest;
-use App\Models\Role;
+use App\Http\Requests\StoreRoundRequest;
+use App\Http\Requests\UpdateRoundRequest;
+use App\Models\Round;
+use App\Http\Controllers\Controller;
 
-class RoleController extends Controller
+class RoundController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +28,7 @@ class RoleController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreRoleRequest $request)
+    public function store(StoreRoundRequest $request)
     {
         //
     }
@@ -35,7 +36,7 @@ class RoleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Role $role)
+    public function show(Round $round)
     {
         //
     }
@@ -43,7 +44,7 @@ class RoleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Role $role)
+    public function edit(Round $round)
     {
         //
     }
@@ -51,7 +52,7 @@ class RoleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRoleRequest $request, Role $role)
+    public function update(UpdateRoundRequest $request, Round $round)
     {
         //
     }
@@ -59,7 +60,7 @@ class RoleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Role $role)
+    public function destroy(Round $round)
     {
         //
     }

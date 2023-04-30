@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\TeamController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\SettingController;
@@ -19,6 +20,7 @@ Route::group(['middleware' => 'auth:sanctum', 'as' => 'admin.'], function () {
 
     //users
     Route::resource('users', UserController::class)->except(['show', 'create']);
+    Route::resource('teams', TeamController::class)->except(['show', 'create']);
 
     //settings
     Route::put('settings', [SettingController::class, 'update'])->name('settings.update');

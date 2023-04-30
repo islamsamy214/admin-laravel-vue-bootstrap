@@ -8,6 +8,7 @@ import EditUser from "./../pages/admin/users/edit/EditUser.vue";
 import SettingPage from "./../pages/admin/settings/SettingPage.vue";
 
 import TeamPage from "./../pages/admin/teams/index/TeamPage.vue";
+import CreateTeam from "../pages/admin/teams/create/CreateTeam.vue";
 
 const admin = [
     ////////////////////////////////// admin routes ////////////////////////////
@@ -47,7 +48,13 @@ const admin = [
         name: "admin.teams",
         path: "teams",
         component: TeamPage,
-    }
+    },
+    {
+        name: "admin.teams.create",
+        path: "teams/add",
+        component: CreateTeam,
+        props: true
+    },
 ];
 
 export default admin;

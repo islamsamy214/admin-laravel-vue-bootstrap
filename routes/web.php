@@ -21,4 +21,9 @@ Route::get(
     }
 )->where('any', '^(?!api\/)[\/\w\.\,-]*');
 
+
+
+
+
+
 // require __DIR__.'/auth.php';

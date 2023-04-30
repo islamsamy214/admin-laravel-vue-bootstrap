@@ -20,3 +20,6 @@ yarn-error.log
 /.idea
 /.vscode
 /public/node_modules/images/**
+composer.lock
+composer.lock
+public/js/app.js

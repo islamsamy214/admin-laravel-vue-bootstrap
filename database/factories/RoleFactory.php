@@ -19,7 +19,7 @@ class RoleFactory extends Factory
     {
         $this->id++;
         return [
-            'name' => $this->faker->word,
+            'name' => $this->faker->unique()->word,
             'team_id' => $this->id,
         ];
     }

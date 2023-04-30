@@ -73,6 +73,7 @@ export default {
       axios
         .get(URL)
         .then((response) => {
+            console.log(response);
           response.data.total == 0
             ? (this.isEmpty = true)
             : (this.isEmpty = false);

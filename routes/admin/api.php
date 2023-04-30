@@ -5,7 +5,6 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Admin\HomePageController;
 
 //don't forget it has an admin prefix
 require __DIR__ . '/auth.php';

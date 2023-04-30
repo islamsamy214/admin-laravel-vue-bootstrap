@@ -2,20 +2,11 @@
   <div>
     <page-header>Users</page-header>
     <div class="row">
-      <user-search
-        @submitSearch="submitSearch"
-        :isEmpty="isEmpty"
-        class="col-md-6 col-sm-12"
-      ></user-search>
-      <user-paginator
-        :pages="pages"
-        :currentPage="currentPage"
-        :total="total"
-        @fill="fill"
-        class="col-md-6 col-sm-12"
-      ></user-paginator>
+      <user-search @submitSearch="submitSearch" :isEmpty="isEmpty" class="col-md-6 col-sm-12"></user-search>
+      <user-paginator :pages="pages" :currentPage="currentPage" :total="total" @fill="fill"
+        class="col-md-6 col-sm-12"></user-paginator>
     </div>
-    <user-list :users="users" :pageLoading="pageLoading"></user-list>
+    <user-list :users="users" :pageLoading="pageLoading" @userDeleted="userDeleted"></user-list>
   </div>
 </template>
 
@@ -96,6 +87,11 @@ export default {
           this.error = errors.response.data;
         }); //end of axios request
     }, //end of fill function
+
+    //delete user
+    userDeleted(id) {
+      this.users = this.users.filter((user) => user.id != id);
+    }
   },
   created() {
     this.fill();

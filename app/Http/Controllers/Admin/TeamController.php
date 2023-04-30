@@ -38,29 +38,19 @@ class TeamController extends Controller
         $teams = Team::where('name', 'like', '%' . $request->name . '%')->latest()->paginate($this->paginate_teams)->toArray();
         return $teams;
     } //end of getSearch
+
     /**
      * Show the form for creating a new resource.
      */
 
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreTeamRequest $request)
     {
-        $rules=['name'=>'required|string|max:255|unique:teams,name'];
-        $data =$request->validate($rules);
-        Team::create($data);
+        Team::create($request->validated());
         return response()->json(__('Team Created Successfully'));
     }
 
     /**
      * Display the specified resource.
-     */
-
-
-    /**
-     * Show the form for editing the specified resource.
      */
     public function edit(Team $team)
     {
@@ -72,25 +62,18 @@ class TeamController extends Controller
      */
     public function update(UpdateTeamRequest $request, Team $team)
     {
-        $rules=['name'=>'required|string|max:255|unique:teams,name,'.$team->id];
-        $data =$request->validate($rules);
-        $team->update($data);
+        $team->update($request->validated());
         return response()->json(__('Team Updated Successfully'));
-
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Team $team, $id)
+    public function destroy(Team $team)
     {
-        $return = Team::where('id', $id)->delete();
-        if ($return) {
-            Round::where('id', $id)->delete();
-            Role::where('id', $id)->delete();
-            return response()->json(__('Team Deleted Successfully'));
-        } else {
-            return response()->json(__('Team Not Found'));
-        }
+        $team->round()->delete();
+        $team->roles()->delete();
+        $team->delete();
+        return response()->json(__('Team Deleted Successfully'));
     }
 }

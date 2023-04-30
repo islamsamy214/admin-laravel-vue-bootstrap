@@ -91,6 +91,7 @@ export default {
     //delete user
     userDeleted(id) {
       this.users = this.users.filter((user) => user.id != id);
+      this.total--;
     }
   },
   created() {

@@ -63,7 +63,7 @@ class UserController extends Controller
         $user = User::create($form_data);
 
         // send test mail to user
-        Mail::to($user)->send(new TestMail($user));
+        // Mail::to($user)->send(new TestMail($user));
 
         return response()->json(__('User Created Successfully'));
     } //end of store

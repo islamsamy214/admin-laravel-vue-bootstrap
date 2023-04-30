@@ -5,6 +5,7 @@
       v-else
       :oldName="oldName"
       :oldEmail="oldEmail"
+      :oldType="oldType"
       :errors="errors"
       :isLoading="isLoading"
       @submitUser="submitUser"
@@ -22,6 +23,7 @@ export default {
       pageLoading: true,
       oldName: null,
       oldEmail: null,
+      oldType: null,
       errors: null,
       isLoading: false,
     };
@@ -34,6 +36,7 @@ export default {
         .then((response) => {
           this.oldName = response.data.name;
           this.oldEmail = response.data.email;
+          this.oldType = response.data.type;
         })
         .then(() => {
           this.pageLoading = false;

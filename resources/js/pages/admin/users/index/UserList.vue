@@ -5,9 +5,10 @@
       <thead>
         <tr>
           <th scope="col">Image</th>
-          <th scope="col">name</th>
-          <th scope="col">email</th>
-          <th scope="col">Handle</th>
+          <th scope="col">Name</th>
+          <th scope="col">Type</th>
+          <th scope="col">Email</th>
+          <th scope="col">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -16,6 +17,7 @@
             <img :src="user.image_path" class="img-thumbnail" style="width: 40px; max-height: 40px" />
           </td>
           <td>{{ user.name }}</td>
+          <td>{{ user.type }}</td>
           <td>{{ user.email }}</td>
           <td>
             <router-link class="btn btn-warning ml-1 mt-1"

@@ -23,12 +23,6 @@ Route::group(['middleware' => 'auth:sanctum', 'as' => 'admin.'], function () {
 
     //settings
     Route::put('settings', [SettingController::class, 'update'])->name('settings.update');
-
-    //home page
-    Route::group(['prefix' => 'home-page', 'as' => 'home-page.'], function () {
-        Route::get('/', [HomePageController::class, 'index'])->name('index');
-        Route::put('hero-section', [HomePageController::class, 'updateHeroSection'])->name('hero-section.update');
-    });
 });
 
 //settings

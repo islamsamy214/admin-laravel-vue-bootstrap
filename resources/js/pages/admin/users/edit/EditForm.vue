@@ -43,6 +43,17 @@
               </div>
 
               <div class="form-group row">
+                <label for="name" class="col-md-2 col-form-label text-md-right">Type</label>
+                <div class="col-md-9">
+                  <select class="form-control" v-model="type">
+                    <option value="member">Member</option>
+                    <option value="judge">Judge</option>
+                    <option value="admin">Admin</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group row">
                 <label
                   for="password"
                   class="col-md-2 col-form-label text-md-right"
@@ -114,6 +125,11 @@
                       {{ error }}
                     </div>
                   </li>
+                  <li class="list-group-item" v-if="errors.type">
+                    <div v-for="error in errors.type" :key="error">
+                      {{ error }}
+                    </div>
+                  </li>
                   <li class="list-group-item" v-if="errors.password">
                     <div v-for="error in errors.password" :key="error">
                       {{ error }}
@@ -149,7 +165,7 @@
 
 <script>
 export default {
-  props: ["isLoading", "errors", "oldName", "oldEmail"],
+  props: ["isLoading", "errors", "oldName", "oldEmail", "oldType"],
 
   emits: ["submitUser"],
 
@@ -157,6 +173,7 @@ export default {
     return {
       name: this.oldName,
       email: this.oldEmail,
+      type: this.oldType,
       password: null,
       password_confirmation: null,
       image: null,
@@ -180,6 +197,14 @@ export default {
         this.sameValue = false;
       }
     }, //end of email
+
+    type(newType) {
+      if (newType == this.oldType) {
+        this.sameValue = true;
+      } else {
+        this.sameValue = false;
+      }
+    }, //end of type
 
     password(newPassword) {
       if (newPassword == null) {
@@ -207,6 +232,7 @@ export default {
       let formData = new FormData();
       formData.append("name", this.name);
       formData.append("email", this.email);
+      formData.append("type", this.type);
       formData.append("password", this.password);
       formData.append("password_confirmation", this.password_confirmation);
       formData.append("_method", "PUT");

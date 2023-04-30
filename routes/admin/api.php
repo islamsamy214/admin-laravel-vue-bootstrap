@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 //don't forget it has an admin prefix
 require __DIR__ . '/auth.php';
 
-Route::group(['middleware' => 'auth:sanctum', 'as' => 'admin.'], function () {
+Route::group(['middleware' => 'admin:sanctum', 'as' => 'admin.'], function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });

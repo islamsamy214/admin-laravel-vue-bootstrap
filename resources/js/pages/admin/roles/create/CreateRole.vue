@@ -1,34 +1,34 @@
 <template>
-    <loading-ui v-if="isLoading"></loading-ui>
-    <div v-else>
+    <div>
+        <loading-ui v-if="isLoading"></loading-ui>
         <create-form
             :errors="errors"
             :isLoading="isLoading"
             :teams="teams"
-            :roles="roles"
-            @submitUser="submitUser"
+            @submitRole="submitRole"
+            v-else
         ></create-form>
     </div>
 </template>
 
 <script>
+import LoadingUi from "../../../../components/user-interface/LoadingUi.vue";
 import CreateForm from "./CreateForm.vue";
 export default {
-    components: { CreateForm },
+    components: { CreateForm, LoadingUi },
     data() {
         return {
             errors: null,
+            teams : null,
             isLoading: false,
-            teams: null,    
-            roles: null,
         };
     }, //end of data
 
     methods: {
-        submitUser(formData) {
+        submitRole(formData) {
             this.isLoading = true;
             axios
-                .post("/api/admin/users", formData)
+                .post("/api/admin/roles", formData)
                 .then((response) => {
                     if (response.status == 200) {
                         new Noty({
@@ -38,7 +38,7 @@ export default {
                             text: response.data,
                         }).show();
                         this.$router.push({
-                            name: "admin.users",
+                            name: "admin.roles",
                         });
                     }
                 })
@@ -54,14 +54,13 @@ export default {
     created() {
         this.isLoading = true;
         axios
-            .get("/api/admin/users/create")
+            .get("/api/admin/roles/create")
             .then((response) => {
                 this.teams = response.data.teams;
-                this.roles = response.data.roles;
             })
             .then(() => {
                 this.isLoading = false;
             });
-    }, //end of created
+    }, // end of created
 };
 </script>

@@ -5,9 +5,10 @@
       <thead>
         <tr>
           <th scope="col">Image</th>
-          <th scope="col">name</th>
-          <th scope="col">email</th>
-          <th scope="col">Handle</th>
+          <th scope="col">Name</th>
+          <th scope="col">Members</th>
+          <th scope="col">Roles</th>
+          <th scope="col">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -16,11 +17,12 @@
             <img :src="team.image_path" class="img-thumbnail" style="width: 40px; max-height: 40px" />
           </td>
           <td>{{ team.name }}</td>
-          <td>{{ team.email }}</td>
+          <td>{{ team.users_count }}</td>
+          <td>{{ team.roles_count }}</td>
           <td>
             <router-link class="btn btn-warning ml-1 mt-1"
               :to="{ name: 'admin.teams.edit', query: { id: team.id } }">Edit</router-link>
-            <button class="btn btn-danger ml-1 mt-1" @click="deleteteam(team.id)">
+            <button class="btn btn-danger ml-1 mt-1" @click="deleteTeam(team.id)">
               Delete
             </button>
           </td>
@@ -34,7 +36,7 @@ export default {
   props: ["teams", "pageLoading"],
   emits: ["teamDeleted"],
   methods: {
-    deleteteam(id) {
+    deleteTeam(id) {
       let __this = this;
       var deleteConfirmation = new Noty({
         layout: "center",
@@ -47,7 +49,7 @@ export default {
             "YES",
             "btn btn-danger",
             function () {
-              deleteteam(id);
+              deleteTeam(id);
             },
             { id: "yes", "data-status": "ok" }
           ),
@@ -59,7 +61,7 @@ export default {
         ],
       }).show(); //end of delete confirmation
 
-      function deleteteam(id) {
+      function deleteTeam(id) {
         axios
           .delete(`/api/admin/teams/${id}`)
           .then((response) => {
@@ -68,7 +70,7 @@ export default {
               deleteConfirmation.close();
               new Noty({
                 layout: "topRight",
-                text: "team Deleted Successfully",
+                text: "Team Deleted Successfully",
                 type: "success",
                 timeout: 2000,
               }).show();

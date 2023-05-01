@@ -3,7 +3,7 @@
         <div class="row justify-content-left m-2">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Edit Team</div>
+                    <div class="card-header">Edit Role</div>
                     <div class="card-body">
                         <form
                             @submit.prevent="fillForm"
@@ -31,19 +31,26 @@
 
                             <div class="form-group row">
                                 <label
-                                    for="image"
+                                    for="name"
                                     class="col-md-2 col-form-label text-md-right"
-                                    >Image</label
+                                    >Team</label
                                 >
-
                                 <div class="col-md-9">
-                                    <input
-                                        id="image"
-                                        type="file"
+                                    <select
                                         class="form-control"
-                                        name="Image"
-                                        @change="uploadImage"
-                                    />
+                                        v-model="teamId"
+                                    >
+                                        <option value="null">
+                                            Select Team
+                                        </option>
+                                        <option
+                                            :value="team.id"
+                                            v-for="team in teams"
+                                            :key="team.id"
+                                        >
+                                            {{ team.name }}
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
 
@@ -66,10 +73,10 @@
                                     </li>
                                     <li
                                         class="list-group-item"
-                                        v-if="errors.image"
+                                        v-if="errors.team_id"
                                     >
                                         <div
-                                            v-for="error in errors.image"
+                                            v-for="error in errors.team_id"
                                             :key="error"
                                         >
                                             {{ error }}
@@ -100,13 +107,14 @@
 
 <script>
 export default {
-    props: ["isLoading", "errors", "oldName"],
+    props: ["isLoading", "errors", "oldName", "oldTeamId", "teams"],
 
-    emits: ["submitTeam"],
+    emits: ["submitRole"],
 
     data() {
         return {
             name: this.oldName,
+            teamId: this.oldTeamId,
             image: null,
             sameValue: true,
         };
@@ -120,6 +128,14 @@ export default {
                 this.sameValue = false;
             }
         }, //end of name
+
+        teamId(newTeamId) {
+            if (newTeamId == null) {
+                this.sameValue = true;
+            } else {
+                this.sameValue = false;
+            }
+        }, //end of teamId
 
         image(newImage) {
             if (newImage == null) {
@@ -138,12 +154,9 @@ export default {
         fillForm() {
             let formData = new FormData();
             formData.append("name", this.name);
+            formData.append("team_id", this.teamId);
             formData.append("_method", "PUT");
-            if (this.image) {
-                formData.append("image", this.image);
-            }
-
-            this.$emit("submitTeam", formData);
+            this.$emit("submitRole", formData);
         }, //end of filling form
     }, //end of methods
 };

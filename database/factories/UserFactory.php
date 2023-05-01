@@ -30,7 +30,7 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
             'type' => 'member',
             'role_id' => $this->id,
-
+            'team_id' => $this->faker->numberBetween(1, 3),
         ];
     }
 

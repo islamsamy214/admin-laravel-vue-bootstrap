@@ -10,6 +10,8 @@ use App\Http\Requests\Admin\User\StoreUserRequest;
 use App\Http\Requests\Admin\User\UpdateUserRequest;
 use App\Mail\TestMail;
 use Illuminate\Support\Facades\Mail;
+use App\Models\Team;
+use App\Models\Role;
 
 class UserController extends Controller
 {
@@ -50,6 +52,10 @@ class UserController extends Controller
         return $users;
     } //end of getSearch
 
+    public function create()
+    {
+        return response()->json(['teams' => Team::all(), 'roles' => Role::all()]);
+    } //end of create
 
     public function store(StoreUserRequest $request)
     {
@@ -71,7 +77,7 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        return $user;
+        return response()->json(['user' => $user, 'teams' => Team::all(), 'roles' => Role::all()]);
     } //end of edit
 
 

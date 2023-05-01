@@ -27,6 +27,9 @@ class UpdateUserRequest extends FormRequest
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($this->user)],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'image' => ['mimes:jpeg,jpg,png,gif'],
+            'team_id' => ['required', 'exists:teams,id'],
+            'role_id' => ['required', 'exists:roles,id'],
+            'type' => ['required', 'in:judge,member,admin'],
         ];
     }
 }

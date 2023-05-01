@@ -11,6 +11,13 @@ class Team extends Model
 
     protected $guarded = [];
 
+    protected $appends = ['image_path'];
+
+    public function getImagePathAttribute()
+    {
+        return asset($this->image);
+    } //end of retreving image directly
+
     public function round()
     {
         return $this->hasOne(Round::class);
@@ -20,4 +27,9 @@ class Team extends Model
     {
         return $this->hasMany(Role::class);
     } // end of roles relationship
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    } // end of users relationship
 }

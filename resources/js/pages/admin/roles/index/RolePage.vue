@@ -1,39 +1,39 @@
 <template>
     <loading-ui v-if="pageLoading"></loading-ui>
     <div v-else>
-        <page-header>Teams</page-header>
+        <page-header>Roles</page-header>
         <div class="row">
-            <team-search
+            <role-search
                 @submitSearch="submitSearch"
                 :isEmpty="isEmpty"
                 class="col-md-6 col-sm-12"
-            ></team-search>
-            <team-paginator
+            ></role-search>
+            <role-paginator
                 :pages="pages"
                 :currentPage="currentPage"
                 :total="total"
                 @fill="fill"
                 class="col-md-6 col-sm-12"
-            ></team-paginator>
+            ></role-paginator>
         </div>
-        <team-list
-            :teams="teams"
+        <role-list
+            :roles="roles"
             :pageLoading="pageLoading"
-            @teamDeleted="teamDeleted"
-        ></team-list>
+            @roleDeleted="roleDeleted"
+        ></role-list>
     </div>
 </template>
 
 <script>
-import TeamList from "./TeamList.vue";
-import TeamPaginator from "./TeamPaginator.vue";
-import TeamSearch from "./TeamSearch.vue";
+import RoleList from "./RoleList.vue";
+import RolePaginator from "./RolePaginator.vue";
+import RoleSearch from "./RoleSearch.vue";
 
 export default {
-    components: { TeamList, TeamPaginator, TeamSearch },
+    components: { RoleList, RolePaginator, RoleSearch },
     data() {
         return {
-            teams: [],
+            roles: [],
             isEmpty: false,
             pageLoading: true,
             error: null,
@@ -44,9 +44,9 @@ export default {
         };
     },
     methods: {
-        // start of filling the teams
-        fillTeams(response) {
-            this.teams = response.data.data;
+        // start of filling the roles
+        fillRoles(response) {
+            this.roles = response.data.data;
         },
         //pagination
         fillPaginator(response) {
@@ -60,7 +60,7 @@ export default {
             }
             this.currentPage = response.data.current_page;
         },
-        //end of filling the teams
+        //end of filling the roles
 
         //start of search
         submitSearch(search) {
@@ -74,7 +74,7 @@ export default {
 
         getUrl(page) {
             typeof page === "undefined" ? (page = 1) : page;
-            let URL = "/api/admin/teams?page=" + page;
+            let URL = "/api/admin/roles?page=" + page;
 
             //search section
             if (this.search) {
@@ -95,7 +95,7 @@ export default {
                         ? (this.isEmpty = true)
                         : (this.isEmpty = false);
                     this.total = response.data.total;
-                    this.fillTeams(response);
+                    this.fillRoles(response);
                     this.fillPaginator(response);
                 })
                 .then(() => {
@@ -106,9 +106,9 @@ export default {
                 }); //end of axios request
         }, //end of fill function
 
-        //delete team
-        teamDeleted(id) {
-            this.teams = this.teams.filter((team) => team.id != id);
+        //delete role
+        roleDeleted(id) {
+            this.roles = this.roles.filter((role) => role.id != id);
             this.total--;
         },
     },

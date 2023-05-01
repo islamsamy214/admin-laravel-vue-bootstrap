@@ -6,9 +6,14 @@ import CreateUser from "./../pages/admin/users/create/CreateUser.vue";
 import EditUser from "./../pages/admin/users/edit/EditUser.vue";
 // settings imports
 import SettingPage from "./../pages/admin/settings/SettingPage.vue";
-
+// team imports
 import TeamPage from "./../pages/admin/teams/index/TeamPage.vue";
-import CreateTeam from "../pages/admin/teams/create/CreateTeam.vue";
+import CreateTeam from "./../pages/admin/teams/create/CreateTeam.vue";
+import EditTeam from "./../pages/admin/teams/edit/EditTeam.vue";
+// role imports
+import RolePage from "./../pages/admin/roles/index/RolePage.vue";
+import CreateRole from "./../pages/admin/roles/create/CreateRole.vue";
+import EditRole from "./../pages/admin/roles/edit/EditRole.vue";
 
 const admin = [
     ////////////////////////////////// admin routes ////////////////////////////
@@ -16,26 +21,26 @@ const admin = [
     {
         name: "admin.dashboard",
         path: "dashboard",
-        component: DashboardPage
+        component: DashboardPage,
     },
     // users
     {
         name: "admin.users",
         path: "users",
         component: UserPage,
-        props: true
+        props: true,
     },
     {
         name: "admin.users.create",
         path: "users/add",
         component: CreateUser,
-        props: true
+        props: true,
     },
     {
         name: "admin.users.edit",
         path: "users/edit",
         component: EditUser,
-        props: true
+        props: true,
     },
     //settings
     {
@@ -48,12 +53,38 @@ const admin = [
         name: "admin.teams",
         path: "teams",
         component: TeamPage,
+        props: true,
     },
     {
         name: "admin.teams.create",
         path: "teams/add",
         component: CreateTeam,
-        props: true
+        props: true,
+    },
+    {
+        name: "admin.teams.edit",
+        path: "teams/edit",
+        component: EditTeam,
+        props: true,
+    },
+    // roles
+    {
+        name: "admin.roles",
+        path: "roles",
+        component: RolePage,
+        props: true,
+    },
+    {
+        name: "admin.roles.create",
+        path: "roles/add",
+        component: CreateRole,
+        props: true,
+    },
+    {
+        name: "admin.roles.edit",
+        path: "roles/edit",
+        component: EditRole,
+        props: true,
     },
 ];
 

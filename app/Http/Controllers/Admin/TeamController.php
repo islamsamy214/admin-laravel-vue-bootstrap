@@ -4,15 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\StoreTeamRequest;
 use App\Http\Requests\UpdateTeamRequest;
-use App\Http\Traits\GeneralTrait;
-use App\Models\Role;
-use App\Models\Round;
 use App\Models\Team;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Traits\ImageTrait;
+use Illuminate\Support\Facades\DB;
 
 class TeamController extends Controller
 {
+    use ImageTrait;
+
     private $paginate_teams = 10;
 
     /**
@@ -29,13 +30,13 @@ class TeamController extends Controller
     }
     public function getTeams()
     {
-        $teams = Team::latest()->paginate($this->paginate_teams);
+        $teams = Team::withCount('roles')->withCount('users')->latest()->paginate($this->paginate_teams);
         return $teams;
     } //end of getUsers
 
     public function getSearch($request)
     {
-        $teams = Team::where('name', 'like', '%' . $request->name . '%')->latest()->paginate($this->paginate_teams)->toArray();
+        $teams = Team::where('name', 'like', '%' . $request->name . '%')->withCount('roles')->withCount('users')->latest()->paginate($this->paginate_teams)->toArray();
         return $teams;
     } //end of getSearch
 
@@ -45,13 +46,19 @@ class TeamController extends Controller
 
     public function store(StoreTeamRequest $request)
     {
-        Team::create($request->validated());
+        $form_data = $request->validated();
+
+        //image uploading
+        $request->image ? $form_data['image'] = $this->img($request->image, 'images/teams/') : '';
+
+        Team::create($form_data);
         return response()->json(__('Team Created Successfully'));
     }
 
     /**
      * Display the specified resource.
      */
+
     public function edit(Team $team)
     {
         return $team;
@@ -62,7 +69,17 @@ class TeamController extends Controller
      */
     public function update(UpdateTeamRequest $request, Team $team)
     {
-        $team->update($request->validated());
+        $form_data = $request->except('image');
+
+        //image uploading
+        if ($request->image) {
+            $team->image ? $this->deleteImg($team->image) : '';
+            $form_data['image'] = $this->img($request->image, 'images/teams/');
+        } else {
+            $form_data['image'] = $team->image;
+        }
+
+        $team->update($form_data);
         return response()->json(__('Team Updated Successfully'));
     }
 
@@ -71,9 +88,21 @@ class TeamController extends Controller
      */
     public function destroy(Team $team)
     {
-        $team->round()->delete();
-        $team->roles()->delete();
-        $team->delete();
+        DB::beginTransaction();
+        try {
+            $team->round()->delete();
+            $team->roles()->delete();
+            $team->users()->delete();
+            // delete image
+            if ($team->image && $team->image != 'images/default.jpg') {
+                $this->deleteImg($team->image);
+            }
+            $team->delete();
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response()->json(['error']);
+        }
         return response()->json(__('Team Deleted Successfully'));
     }
 }

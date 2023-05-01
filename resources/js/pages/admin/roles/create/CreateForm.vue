@@ -3,7 +3,7 @@
         <div class="row justify-content-left m-2">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Edit Team</div>
+                    <div class="card-header">Add Role</div>
                     <div class="card-body">
                         <form
                             @submit.prevent="fillForm"
@@ -31,19 +31,26 @@
 
                             <div class="form-group row">
                                 <label
-                                    for="image"
+                                    for="name"
                                     class="col-md-2 col-form-label text-md-right"
-                                    >Image</label
+                                    >Team</label
                                 >
-
                                 <div class="col-md-9">
-                                    <input
-                                        id="image"
-                                        type="file"
+                                    <select
                                         class="form-control"
-                                        name="Image"
-                                        @change="uploadImage"
-                                    />
+                                        v-model="teamId"
+                                    >
+                                        <option value="null">
+                                            Select Team
+                                        </option>
+                                        <option
+                                            :value="team.id"
+                                            v-for="team in teams"
+                                            :key="team.id"
+                                        >
+                                            {{ team.name }}
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
 
@@ -64,6 +71,19 @@
                                             {{ error }}
                                         </div>
                                     </li>
+
+                                    <li
+                                        class="list-group-item"
+                                        v-if="errors.team_id"
+                                    >
+                                        <div
+                                            v-for="error in errors.team_id"
+                                            :key="error"
+                                        >
+                                            {{ error }}
+                                        </div>
+                                    </li>
+
                                     <li
                                         class="list-group-item"
                                         v-if="errors.image"
@@ -84,7 +104,7 @@
                                     <button
                                         type="submit"
                                         class="btn btn-primary"
-                                        :disabled="isLoading || sameValue"
+                                        :disabled="isLoading"
                                     >
                                         Submit
                                     </button>
@@ -97,53 +117,31 @@
         </div>
     </div>
 </template>
-
 <script>
-export default {
-    props: ["isLoading", "errors", "oldName"],
+import Multiselect from "@vueform/multiselect";
 
-    emits: ["submitTeam"],
+export default {
+    components: {
+        Multiselect,
+    },
+    props: ["errors", "isLoading", "teams"],
+
+    emits: ["submitRole"],
 
     data() {
         return {
-            name: this.oldName,
+            name: null,
+            teamId: null,
             image: null,
-            sameValue: true,
         };
     }, //end of data
 
-    watch: {
-        name(newName) {
-            if (newName == this.oldName) {
-                this.sameValue = true;
-            } else {
-                this.sameValue = false;
-            }
-        }, //end of name
-
-        image(newImage) {
-            if (newImage == null) {
-                this.sameValue = true;
-            } else {
-                this.sameValue = false;
-            }
-        }, //end of password
-    }, //end of watch
-
     methods: {
-        uploadImage(event) {
-            this.image = event.currentTarget.files[0];
-        }, //end of image upload
-
         fillForm() {
             let formData = new FormData();
             formData.append("name", this.name);
-            formData.append("_method", "PUT");
-            if (this.image) {
-                formData.append("image", this.image);
-            }
-
-            this.$emit("submitTeam", formData);
+            formData.append("team_id", this.teamId);
+            this.$emit("submitRole", formData);
         }, //end of filling form
     }, //end of methods
 };

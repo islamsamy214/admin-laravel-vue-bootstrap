@@ -5,7 +5,7 @@
     >
       <router-link
         class="navbar-brand col-md-3 col-lg-2 mr-0 px-3"
-        :to="{ name: 'home' }"
+        :to="{ name: 'admin.dashboard' }"
         >{{ siteName }}</router-link
       >
       <button

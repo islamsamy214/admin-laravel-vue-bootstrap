@@ -4,9 +4,11 @@
     <edit-form
       v-else
       :oldName="oldName"
+      :oldTeamId="oldTeamId"
+      :teams="teams"
       :errors="errors"
       :isLoading="isLoading"
-      @submitTeam="submitTeam"
+      @submitRole="submitRole"
     ></edit-form>
   </div>
 </template>
@@ -19,6 +21,8 @@ export default {
   data() {
     return {
       oldName: null,
+      oldTeamId: null,
+      teams: null,
       errors: null,
       isLoading: false,
     };
@@ -28,9 +32,11 @@ export default {
     fill(id) {
       this.isLoading = true;
       axios
-        .get(`/api/admin/teams/${id}/edit`)
+        .get(`/api/admin/roles/${id}/edit`)
         .then((response) => {
-          this.oldName = response.data.name;
+          this.oldName = response.data.role.name;
+          this.oldTeamId = response.data.role.team_id;
+          this.teams = response.data.teams;
         })
         .then(() => {
           this.isLoading = false;
@@ -40,10 +46,10 @@ export default {
         });
     }, //end of fill data
 
-    submitTeam(formData) {
+    submitRole(formData) {
       this.isLoading = true;
       axios
-        .post(`/api/admin/teams/${this.$route.query.id}`, formData)
+        .post(`/api/admin/roles/${this.$route.query.id}`, formData)
         .then((response) => {
           if (response.status == 200) {
             new Noty({
@@ -53,7 +59,7 @@ export default {
               text: response.data,
             }).show();
             this.$router.push({
-              name: "admin.teams",
+              name: "admin.roles",
             });
           }
         })
@@ -68,7 +74,7 @@ export default {
 
   created() {
     if (this.$route.query.id == undefined) {
-      this.$router.push({ name: "admin.teams" });
+      this.$router.push({ name: "admin.roles" });
     }
     this.fill(this.$route.query.id);
   }, //end of created

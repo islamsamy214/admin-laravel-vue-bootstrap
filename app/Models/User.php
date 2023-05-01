@@ -55,4 +55,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     } // end of role relationship
+
+    public function team()
+    {
+        return $this->belongsTo(Team::class);
+    } // end of team relationship
 }

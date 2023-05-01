@@ -22,7 +22,8 @@ class UpdateTeamRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255|unique:teams,name,' . $this->team->id
+            'name' => 'required|string|max:255|unique:teams,name,' . $this->team->id,
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 }

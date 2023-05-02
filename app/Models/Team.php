@@ -11,7 +11,13 @@ class Team extends Model
 
     protected $guarded = [];
 
-    protected $appends = ['image_path'];
+    protected $appends = ['image_path', 'rate'];
+
+    public function getRateAttribute()
+    {
+        $this->load('roles');
+        return $this->roles->sum('rate') / $this->roles->count();
+    } // end of rate attribute
 
     public function getImagePathAttribute()
     {

@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\DashboardController;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\RoundController;
 
@@ -13,13 +12,8 @@ use App\Http\Controllers\Admin\RoundController;
 require __DIR__ . '/auth.php';
 
 Route::group(['middleware' => 'admin:sanctum', 'as' => 'admin.'], function () {
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    })->name('user');
-
     //dashboard
     Route::get('dashboard', [DashboardController::class, 'index']);
-
     //users
     Route::resource('users', UserController::class)->except(['show']);
     //teams

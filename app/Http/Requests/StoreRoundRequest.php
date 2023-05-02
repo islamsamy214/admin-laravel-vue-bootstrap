@@ -11,7 +11,7 @@ class StoreRoundRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class StoreRoundRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|unique:rounds,name|string|max:255',
+            'team_id' => 'required|unique:rounds,team_id|exists:teams,id',
+
         ];
     }
 }

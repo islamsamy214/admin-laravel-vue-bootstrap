@@ -14,6 +14,12 @@ import EditTeam from "./../pages/admin/teams/edit/EditTeam.vue";
 import RolePage from "./../pages/admin/roles/index/RolePage.vue";
 import CreateRole from "./../pages/admin/roles/create/CreateRole.vue";
 import EditRole from "./../pages/admin/roles/edit/EditRole.vue";
+// round imports
+import RoundPage from "./../pages/admin/rounds/index/RoundPage.vue";
+import CreateRound from "./../pages/admin/rounds/create/CreateRound.vue";
+import EditRound from "./../pages/admin/rounds/edit/EditRound.vue";
+
+
 
 const admin = [
     ////////////////////////////////// admin routes ////////////////////////////
@@ -86,6 +92,27 @@ const admin = [
         component: EditRole,
         props: true,
     },
+    //rounds
+    {
+        name: "admin.rounds",
+        path: "rounds",
+        component: RoundPage,
+        props: true,
+    },
+    {
+        name: "admin.rounds.create",
+        path: "rounds/add",
+        component: CreateRound,
+        props: true,
+    },
+    {
+        name: "admin.rounds.edit",
+        path: "rounds/edit",
+        component: EditRound,
+        props: true,
+    },
+
+
 ];
 
 export default admin;

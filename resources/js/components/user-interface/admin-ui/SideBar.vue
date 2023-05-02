@@ -63,19 +63,6 @@
                 <li class="nav-item">
                     <router-link
                         class="nav-link"
-                        :to="{ name: 'admin.rounds' }"
-                        :class="{
-                            active:
-                                this.$route.fullPath.split('/')[2] == 'rounds',
-                        }"
-                    >
-                        Rounds
-                    </router-link>
-                </li>
-
-                <li class="nav-item">
-                    <router-link
-                        class="nav-link"
                         :to="{ name: 'admin.users' }"
                         :class="{
                             active:
@@ -83,6 +70,19 @@
                         }"
                     >
                         Users
+                    </router-link>
+                </li>
+
+                <li class="nav-item">
+                    <router-link
+                        class="nav-link"
+                        :to="{ name: 'admin.rounds' }"
+                        :class="{
+                            active:
+                                this.$route.fullPath.split('/')[2] == 'rounds',
+                        }"
+                    >
+                        Rounds
                     </router-link>
                 </li>
             </ul>

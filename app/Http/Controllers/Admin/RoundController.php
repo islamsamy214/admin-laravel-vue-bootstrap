@@ -26,11 +26,11 @@ class RoundController extends Controller
     {
         $rounds = Round::with('team')->latest()->paginate($this->paginate_rounds);
         return $rounds;
-    } //end of getUsers
+    } //end of getRounds
 
     public function getSearch($request)
     {
-        $rounds = Round::where('name', 'like', '%' . $request->name . '%')->with('team')->latest()->paginate($this->paginate_rounds)->toArray();
+        $rounds = Round::where('name', 'like', '%' . $request->search . '%')->with('team')->latest()->paginate($this->paginate_rounds)->toArray();
         return $rounds;
     } //end of getSearch
 

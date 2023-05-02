@@ -31,11 +31,11 @@ class RoleController extends Controller
     {
         $roles = Role::with('team')->withCount('users')->latest()->paginate($this->paginate_roles);
         return $roles;
-    } //end of getUsers
+    } //end of getRole
 
     public function getSearch($request)
     {
-        $roles = Role::where('name', 'like', '%' . $request->name . '%')->with('team')->withCount('users')->latest()->paginate($this->paginate_roles)->toArray();
+        $roles = Role::where('name', 'like', '%' . $request->search . '%')->with('team')->withCount('users')->latest()->paginate($this->paginate_roles)->toArray();
         return $roles;
     } //end of getSearch
 
@@ -92,4 +92,21 @@ class RoleController extends Controller
         }
         return response()->json(__('Role Deleted Successfully'));
     }
+
+    /**
+     * Flush the specified resource from storage.
+     */
+
+    public function flushRates(Role $role)
+    {
+        $role->update([
+            'opening_rate' => NULL,
+            'probing_rate' => NULL,
+            'delivering_rate' => NULL,
+            'objection_rate' => NULL,
+            'closing_rate' => NULL,
+            'product_rate' => NULL,
+        ]);
+        return response()->json(__('Rates Flushed Successfully'));
+    } //end of flushRates
 }

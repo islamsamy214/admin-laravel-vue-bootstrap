@@ -32,11 +32,11 @@ class TeamController extends Controller
     {
         $teams = Team::withCount('roles')->withCount('users')->latest()->paginate($this->paginate_teams);
         return $teams;
-    } //end of getUsers
+    } //end of getTeams
 
     public function getSearch($request)
     {
-        $teams = Team::where('name', 'like', '%' . $request->name . '%')->withCount('roles')->withCount('users')->latest()->paginate($this->paginate_teams)->toArray();
+        $teams = Team::where('name', 'like', '%' . $request->search . '%')->withCount('roles')->withCount('users')->latest()->paginate($this->paginate_teams)->toArray();
         return $teams;
     } //end of getSearch
 

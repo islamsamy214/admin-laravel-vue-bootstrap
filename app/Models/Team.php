@@ -15,8 +15,11 @@ class Team extends Model
 
     public function getRateAttribute()
     {
-        $this->load('roles');
-        return $this->roles->sum('rate') / $this->roles->count();
+        if ($this->roles->count() > 0) {
+            $this->load('roles');
+            return $this->roles->sum('rate') / $this->roles->count();
+        }
+        return 0;
     } // end of rate attribute
 
     public function getImagePathAttribute()

@@ -20,6 +20,7 @@
             :roles="roles"
             :pageLoading="pageLoading"
             @roleDeleted="roleDeleted"
+            @roleFlushed="roleFlushed"
         ></role-list>
     </div>
 </template>
@@ -110,6 +111,16 @@ export default {
         roleDeleted(id) {
             this.roles = this.roles.filter((role) => role.id != id);
             this.total--;
+        },
+
+        //flush role
+        roleFlushed(id) {
+            this.roles = this.roles.map((role) => {
+                if (role.id == id) {
+                    role.rate = 0;
+                }
+                return role;
+            });
         },
     },
     created() {

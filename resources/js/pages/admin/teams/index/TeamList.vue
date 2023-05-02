@@ -8,6 +8,7 @@
           <th scope="col">Name</th>
           <th scope="col">Members</th>
           <th scope="col">Roles</th>
+          <th scope="col">OverAllRate</th>
           <th scope="col">Action</th>
         </tr>
       </thead>
@@ -19,6 +20,7 @@
           <td>{{ team.name }}</td>
           <td>{{ team.users_count }}</td>
           <td>{{ team.roles_count }}</td>
+          <td>{{ team.rate }}</td>
           <td>
             <router-link class="btn btn-warning ml-1 mt-1"
               :to="{ name: 'admin.teams.edit', query: { id: team.id } }">Edit</router-link>

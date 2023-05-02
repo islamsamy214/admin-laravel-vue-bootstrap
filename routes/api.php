@@ -1,6 +1,9 @@
 <?php
+
+use App\Http\Controllers\Api\RoleController;
+use App\Http\Controllers\Api\RoundController;
+use App\Http\Controllers\Api\TeamController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,16 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+require __DIR__ . '/auth.php';
+
+Route::group(['as' => 'api.'], function () {
+    // rounds
+    Route::get('rounds', [RoundController::class, 'index'])->name('rounds.index');
+    Route::put('rounds/{round}', [RoundController::class, 'update'])->name('rounds.update');
+    // roles
+    Route::get('roles/{role}', [RoleController::class, 'show'])->name('roles.show');
+    Route::put('roles/{role}', [RoleController::class, 'update'])->name('roles.update');
+    // teams
+    Route::get('teams', [TeamController::class, 'index'])->name('teams.index');
+    Route::get('teams/{team}', [TeamController::class, 'show'])->name('teams.show');
 });

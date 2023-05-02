@@ -11,7 +11,7 @@ class UpdateRoundRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class UpdateRoundRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|max:255|unique:rounds,name,' . $this->round->id,
+            'team_id' => 'required|exists:teams,id|unique:rounds,team_id,' . $this->round->id,
         ];
     }
 }

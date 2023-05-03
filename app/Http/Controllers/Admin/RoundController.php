@@ -8,6 +8,7 @@ use App\Models\Round;
 use App\Http\Controllers\Controller;
 use App\Models\Team;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RoundController extends Controller
 {
@@ -24,13 +25,13 @@ class RoundController extends Controller
     }
     public function getRounds()
     {
-        $rounds = Round::with('team')->latest()->paginate($this->paginate_rounds);
+        $rounds = Round::latest()->paginate($this->paginate_rounds);
         return $rounds;
     } //end of getRounds
 
     public function getSearch($request)
     {
-        $rounds = Round::where('name', 'like', '%' . $request->search . '%')->with('team')->latest()->paginate($this->paginate_rounds)->toArray();
+        $rounds = Round::where('name', 'like', '%' . $request->search . '%')->latest()->paginate($this->paginate_rounds)->toArray();
         return $rounds;
     } //end of getSearch
 
@@ -47,8 +48,16 @@ class RoundController extends Controller
      */
     public function store(StoreRoundRequest $request)
     {
-        Round::create($request->validated());
-        return response()->json(__('Round Created Successfully'));
+        DB::beginTransaction();
+        try {
+            $round = Round::create(['name' => $request->name,]);
+            $round->teams()->attach(json_decode($request->team_ids));
+            DB::commit();
+            return response()->json(__('Round Created Successfully'));
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response()->json(__('Something went wrong'));
+        }
     }
 
     /**
@@ -58,7 +67,7 @@ class RoundController extends Controller
     public function edit(Round $round)
     {
         //
-        return response()->json(['round' => $round, 'teams' => Team::all()]);
+        return response()->json(['round' => $round->load('teams'), 'teams' => Team::all()]);
     }
 
     /**
@@ -66,9 +75,16 @@ class RoundController extends Controller
      */
     public function update(UpdateRoundRequest $request, Round $round)
     {
-        //
-        $round->update($request->validated());
-        return response()->json(__('Round Updated Successfully'));
+        DB::beginTransaction();
+        try {
+            $round->update(['name' => $request->name]);
+            $round->teams()->sync(json_decode($request->team_ids));
+            DB::commit();
+            return response()->json(__('Round Updated Successfully'));
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response()->json(__('Something went wrong'));
+        }
     }
 
     /**
@@ -76,6 +92,7 @@ class RoundController extends Controller
      */
     public function destroy(Round $round)
     {
+        $round->teams()->detach();
         $round->delete();
         return response()->json(__('Role Deleted Successfully'));
     }

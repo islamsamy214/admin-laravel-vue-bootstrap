@@ -23,8 +23,7 @@ class StoreRoundRequest extends FormRequest
     {
         return [
             'name' => 'required|unique:rounds,name|string|max:255',
-            'team_id' => 'required|unique:rounds,team_id|exists:teams,id',
-
+            'team_ids' => 'required',
         ];
     }
 }

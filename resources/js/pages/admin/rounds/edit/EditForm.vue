@@ -33,24 +33,16 @@
                                 <label
                                     for="name"
                                     class="col-md-2 col-form-label text-md-right"
-                                    >Team</label
+                                    >Teams</label
                                 >
                                 <div class="col-md-9">
-                                    <select
-                                        class="form-control"
-                                        v-model="teamId"
-                                    >
-                                        <option value="null">
-                                            Select Team
-                                        </option>
-                                        <option
-                                            :value="team.id"
-                                            v-for="team in teams"
-                                            :key="team.id"
-                                        >
-                                            {{ team.name }}
-                                        </option>
-                                    </select>
+                                    <Multiselect
+                                        v-model="value"
+                                        mode="multiple"
+                                        placeholder="Select your characters"
+                                        :close-on-select="false"
+                                        :options="options"
+                                    />
                                 </div>
                             </div>
 
@@ -73,10 +65,10 @@
                                     </li>
                                     <li
                                         class="list-group-item"
-                                        v-if="errors.team_id"
+                                        v-if="errors.team_ids"
                                     >
                                         <div
-                                            v-for="error in errors.team_id"
+                                            v-for="error in errors.team_ids"
                                             :key="error"
                                         >
                                             {{ error }}
@@ -106,15 +98,22 @@
 </template>
 
 <script>
+import Multiselect from "@vueform/multiselect";
+
 export default {
-    props: ["isLoading", "errors", "oldName", "oldTeamId", "teams"],
+    components: {
+        Multiselect,
+    },
+
+    props: ["isLoading", "errors", "oldName", "oldTeams", "teams"],
 
     emits: ["submitRound"],
 
     data() {
         return {
             name: this.oldName,
-            teamId: this.oldTeamId,
+            options: [],
+            value: null,
             image: null,
             sameValue: true,
         };
@@ -129,13 +128,13 @@ export default {
             }
         }, //end of name
 
-        teamId(newTeamId) {
-            if (newTeamId == null) {
+        value(newValue) {
+            if (newValue == null) {
                 this.sameValue = true;
             } else {
                 this.sameValue = false;
             }
-        }, //end of teamId
+        }, //end of value
 
         image(newImage) {
             if (newImage == null) {
@@ -154,10 +153,25 @@ export default {
         fillForm() {
             let formData = new FormData();
             formData.append("name", this.name);
-            formData.append("team_id", this.teamId);
+            if (this.value) {
+                formData.append("team_ids", JSON.stringify(this.value));
+            }
             formData.append("_method", "PUT");
             this.$emit("submitRound", formData);
         }, //end of filling form
     }, //end of methods
+
+    mounted() {
+        this.options = this.teams.map((team) => {
+            return {
+                value: team.id,
+                label: team.name,
+            };
+        });
+
+        this.value = this.oldTeams.map((team) => {
+            return team.id;
+        });
+    }, //end of mounted
 };
 </script>

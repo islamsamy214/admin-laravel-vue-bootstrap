@@ -8,14 +8,12 @@
             <thead>
                 <tr>
                     <th scope="col">Name</th>
-                    <th scope="col">Team</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="round in rounds" :key="round.id">
                     <td>{{ round.name }}</td>
-                    <td>{{ round.team.name }}</td>
                     <td>
                         <router-link
                             class="btn btn-warning ml-1 mt-1"

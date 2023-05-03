@@ -86,11 +86,11 @@ class TeamController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Team $team)
+    public function destroy(Team $team, Request $request)
     {
         DB::beginTransaction();
         try {
-            $team->round()->delete();
+            $team->rounds()->detach();
             $team->roles()->delete();
             $team->users()->delete();
             // delete image

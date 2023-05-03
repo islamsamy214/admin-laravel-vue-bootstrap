@@ -14,8 +14,6 @@ return new class extends Migration
         Schema::create('rounds', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-            $table->bigInteger('team_id')->unsigned()->nullable();
-            $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -33,24 +33,16 @@
                                 <label
                                     for="name"
                                     class="col-md-2 col-form-label text-md-right"
-                                    >Team</label
+                                    >Teams</label
                                 >
                                 <div class="col-md-9">
-                                    <select
-                                        class="form-control"
-                                        v-model="teamId"
-                                    >
-                                        <option value="null">
-                                            Select Team
-                                        </option>
-                                        <option
-                                            :value="team.id"
-                                            v-for="team in teams"
-                                            :key="team.id"
-                                        >
-                                            {{ team.name }}
-                                        </option>
-                                    </select>
+                                    <Multiselect
+                                        v-model="value"
+                                        mode="multiple"
+                                        placeholder="Select your characters"
+                                        :close-on-select="false"
+                                        :options="options"
+                                    />
                                 </div>
                             </div>
 
@@ -74,10 +66,10 @@
 
                                     <li
                                         class="list-group-item"
-                                        v-if="errors.team_id"
+                                        v-if="errors.team_ids"
                                     >
                                         <div
-                                            v-for="error in errors.team_id"
+                                            v-for="error in errors.team_ids"
                                             :key="error"
                                         >
                                             {{ error }}
@@ -131,7 +123,8 @@ export default {
     data() {
         return {
             name: null,
-            teamId: null,
+            options: [],
+            value: null,
             image: null,
         };
     }, //end of data
@@ -140,9 +133,22 @@ export default {
         fillForm() {
             let formData = new FormData();
             formData.append("name", this.name);
-            formData.append("team_id", this.teamId);
+            if (this.value) {
+                formData.append("team_ids", JSON.stringify(this.value));
+            }
             this.$emit("submitRound", formData);
         }, //end of filling form
     }, //end of methods
+
+    mounted() {
+        this.options = this.teams.map((team) => {
+            return {
+                value: team.id,
+                label: team.name,
+            };
+        });
+    }, //end of mounted
 };
 </script>
+
+<style src="@vueform/multiselect/themes/default.css"></style>

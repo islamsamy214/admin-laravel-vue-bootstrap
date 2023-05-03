@@ -11,9 +11,9 @@ class Team extends Model
 
     protected $guarded = [];
 
-    protected $appends = ['image_path', 'rate'];
+    protected $appends = ['image_path', 'round_rate'];
 
-    public function getRateAttribute()
+    public function getRoundRateAttribute()
     {
         if ($this->roles->count() > 0) {
             $this->load('roles');
@@ -27,10 +27,10 @@ class Team extends Model
         return asset($this->image);
     } //end of retreving image directly
 
-    public function round()
+    public function rounds()
     {
-        return $this->hasOne(Round::class);
-    } // end of round relationship
+        return $this->belongsToMany(Round::class, 'rounds_teams')->withPivot('rate');
+    } // end of rounds relationship
 
     public function roles()
     {

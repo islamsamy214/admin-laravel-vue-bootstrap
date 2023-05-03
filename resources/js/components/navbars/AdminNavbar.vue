@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
   <div>
     <nav
       class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow"
@@ -121,4 +121,4 @@ export default {
   border-color: transparent;
   box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
 }
-</style> -->
+</style> 

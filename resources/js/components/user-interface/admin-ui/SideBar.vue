@@ -2,7 +2,20 @@
     <div>
         <div class="sidebar-sticky pt-3">
             <ul class="nav flex-column">
-                <li class="nav-item">
+                <li class="nav-item mb-5 ">
+                    <router-link
+                        class="nav-link"
+                        :class="{
+                            active:
+                                this.$route.fullPath.split('/')[2] ==
+                                'dashboard',
+                        }"
+                        :to="{ name: 'admin.dashboard' }"
+                    >
+                         <img src="/Logo.svg" alt="logo">
+                    </router-link>
+                </li>
+                <li class="nav-item ">
                     <router-link
                         class="nav-link"
                         :class="{
@@ -72,6 +85,12 @@
                         Users
                     </router-link>
                 </li>
+                <li class="nav-item logout ">
+                    <div class="nav-link" @click="logout">
+                        Logout
+                    </div>
+                </li>
+
 
                 <li class="nav-item">
                     <router-link
@@ -90,10 +109,29 @@
     </div>
 </template>
 
+<script>
+import store from "../../../store";
+export default {
+    methods: {
+        logout() {
+      axios.post("/api/admin/logout", this.user).then((response) => {
+        if (response.status == 200) {
+          store.commit("adminAuth/logout");
+          this.$router.push({ name: "admin.login" });
+        }
+      });
+    }, //end of logout
+},
+};
+</script>
+
 <style scoped>
 /*
  * Sidebar
  */
+ .logout{
+    cursor: pointer;
+ }
 li.nav-item a.nav-link {
     font-size: 14px;
 }

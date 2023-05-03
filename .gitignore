@@ -22,3 +22,4 @@ yarn-error.log
 /public/node_modules/images/**
 composer.lock
 composer.lock
+/public/js/app.js

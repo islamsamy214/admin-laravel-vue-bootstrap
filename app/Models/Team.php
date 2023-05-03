@@ -11,13 +11,26 @@ class Team extends Model
 
     protected $guarded = [];
 
-    protected $appends = ['image_path', 'round_rate'];
+    protected $appends = ['image_path', 'round_rate', 'over_all_rate'];
 
     public function getRoundRateAttribute()
     {
         if ($this->roles->count() > 0) {
             $this->load('roles');
-            return $this->roles->sum('rate') / $this->roles->count();
+            return $this->roles->sum('round_rate') / $this->roles->count();
+        }
+        return 0;
+    } // end of rate attribute
+
+    public function getOverAllRateAttribute()
+    {
+        if ($this->rounds->count() > 0) {
+            $rounds = $this->rounds;
+            $rate = 0;
+            foreach ($rounds as $round) {
+                $rate += $round->pivot->rate;
+            }
+            return $rate / $rounds->count();
         }
         return 0;
     } // end of rate attribute

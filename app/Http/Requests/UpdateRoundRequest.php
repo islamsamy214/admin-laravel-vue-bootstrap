@@ -23,7 +23,6 @@ class UpdateRoundRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255|unique:rounds,name,' . $this->round->id,
-            'team_ids' => 'required',
         ];
     }
 }

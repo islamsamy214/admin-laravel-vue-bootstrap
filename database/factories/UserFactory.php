@@ -19,7 +19,7 @@ class UserFactory extends Factory
     public function definition()
     {
         $this->role_id = ($this->role_id % 12) + 1;
-        $this->team_id = ($this->team_id % 6) + 1;
+        $this->team_id = ($this->team_id % 3) + 1;
         
         return [
             'name' => $this->faker->name(),

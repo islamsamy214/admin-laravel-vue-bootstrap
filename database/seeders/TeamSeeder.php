@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class TeamSeeder extends Seeder
@@ -12,6 +11,6 @@ class TeamSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\Team::factory()->count(3)->create();
+        \App\Models\Team::factory()->count(3)->create();
     }
 }

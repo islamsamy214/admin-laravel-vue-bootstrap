@@ -20,7 +20,7 @@ class RoleFactory extends Factory
     public function definition(): array
     {
         $this->id++;
-        if ($this->id >= 7) {
+        if ($this->id >= 4) {
             $this->id = 1;
             $this->index++;
         }

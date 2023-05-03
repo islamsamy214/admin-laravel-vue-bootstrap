@@ -11,6 +11,6 @@ class RoundSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\Round::factory()->count(3)->hasTeams('2')->create();
+        \App\Models\Round::factory()->count(3)->create();
     }
 }

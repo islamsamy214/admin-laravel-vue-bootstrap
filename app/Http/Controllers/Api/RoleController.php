@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\UpdateRoleRequest;
-use Illuminate\Http\Request;
 use App\Models\Role;
 use App\Http\Traits\GeneralTrait;
 
@@ -19,9 +18,9 @@ class RoleController extends Controller
     public function show(Role $role)
     {
         $role->load('team');
-        $role->team->load('round');
+        $role->team->load('rounds');
         $role->load('users');
-        return $this->apiSuccessResponse(['rolePlay' => $role]);
+        return $this->apiSuccessResponse(['role' => $role]);
     } // end of show
 
     /**
@@ -32,14 +31,11 @@ class RoleController extends Controller
     {
         $role->update($request->validated());
         $team = $role->team;
-        if ($team !== null) {
-            $roundIds = $team->rounds->pluck('id');
-            // get the old rate form the pivot table
-            $rate = $team->load('rounds')->first()->pivot->rate;
-            dd($rate);
-            // add the new rate to the old rate
-            $rate += $role->round_rate;
-            $team->rounds()->updateExistingPivot($roundIds, ['rate' => $rate]);
+        // if the team exists and the round exists
+        if ($team && $team->rounds->contains($request->round_id)) {
+            $team->rounds()->syncWithoutDetaching([$request->round_id => ['rate' => $team->round_rate]]);
+        }else{
+            return $this->notFound();
         }
         return $this->apiSuccessResponse('Role Play updated successfully');
     } // end of update

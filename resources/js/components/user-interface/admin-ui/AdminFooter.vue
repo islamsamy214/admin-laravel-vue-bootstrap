@@ -1,10 +1,22 @@
 <template>
+  <SideBar />
   <div>
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-light bg-light d-flex justify-content-center">
       <span class="navbar-text">
-        &copy; Copyrights {{ new Date().getFullYear() }}
-        <a href="https://github.com/islamsamy214" target="_blank">Inteligencia</a>
+        &copy;  {{ new Date().getFullYear() }}
+        <a href="https://github.com/islamsamy214" target="_blank">Inteligencia. All Rights Reserved.</a>
       </span>
     </nav>
   </div>
 </template>
+
+<!-- <script>
+import SideBar from "./SideBar";
+export default {
+  name: "AdminFooter",
+  components: {
+    SideBar,
+  },
+  };
+</script> -->
+

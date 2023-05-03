@@ -12,12 +12,14 @@ class TeamController extends Controller
 
     public function index()
     {
-        $teams = Team::with('round', 'roles.users')->get();
+        $teams = Team::with(['round','users.role'])->get();
+
         return $this->apiSuccessResponse(['teams' => $teams]);
     } // end of index
 
     public function show(Team $team)
     {
-        return $this->apiSuccessResponse($team->roles->load('users'));
+              
+        return $this->apiSuccessResponse($team->load('users.role'));
     } // end of show
 }

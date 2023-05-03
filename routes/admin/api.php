@@ -17,7 +17,7 @@ Route::group(['middleware' => 'admin:sanctum', 'as' => 'admin.'], function () {
     //users
     Route::resource('users', UserController::class)->except(['show']);
     //teams
-    Route::resource('teams', TeamController::class)->except(['show', 'create']);
+    Route::resource('teams', TeamController::class)->except(['show']);
     //roles
     Route::resource('roles', RoleController::class)->except(['show']);
     Route::get('roles/{role}/flush', [RoleController::class, 'flushRates']);

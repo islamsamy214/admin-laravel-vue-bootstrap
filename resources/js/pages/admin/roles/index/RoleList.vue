@@ -10,7 +10,6 @@
                     <th scope="col">Name</th>
                     <th scope="col">Players Count</th>
                     <th scope="col">Team</th>
-                    <th scope="col">Rate</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
@@ -19,7 +18,6 @@
                     <td>{{ role.name }}</td>
                     <td>{{ role.users_count }}</td>
                     <td>{{ role.team.name }}</td>
-                    <td>{{ role.rate }}</td>
                     <td>
                         <router-link
                             class="btn btn-warning ml-1 mt-1"

@@ -1,5 +1,4 @@
 <template>
-  <SideBar />
   <div>
     <nav class="navbar navbar-light bg-light d-flex justify-content-center">
       <span class="navbar-text">

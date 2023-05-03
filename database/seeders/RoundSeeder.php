@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class RoundSeeder extends Seeder
@@ -12,6 +11,6 @@ class RoundSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\Round::factory()->count(3)->create();
+        \App\Models\Round::factory()->count(3)->hasTeams('2')->create();
     }
 }

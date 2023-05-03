@@ -13,7 +13,7 @@ class UserSeeder extends Seeder
     {
         $faker = Factory::create();
 
-        User::factory(18)->create();
+        User::factory(30)->create();
 
         User::create([
             'name'=>'super admin',

@@ -4,7 +4,7 @@
     <edit-form
       v-else
       :oldName="oldName"
-      :oldTeamId="oldTeamId"
+      :oldTeams="oldTeams"
       :teams="teams"
       :errors="errors"
       :isLoading="isLoading"
@@ -21,7 +21,7 @@ export default {
   data() {
     return {
       oldName: null,
-      oldTeamId: null,
+      oldTeams: null,
       teams: null,
       errors: null,
       isLoading: false,
@@ -35,7 +35,7 @@ export default {
         .get(`/api/admin/rounds/${id}/edit`)
         .then((response) => {
           this.oldName = response.data.round.name;
-          this.oldTeamId = response.data.round.team_id;
+          this.oldTeams = response.data.round.teams;
           this.teams = response.data.teams;
         })
         .then(() => {

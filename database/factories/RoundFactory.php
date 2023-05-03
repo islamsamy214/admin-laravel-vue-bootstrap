@@ -14,13 +14,10 @@ class RoundFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    private $id = 0;
     public function definition(): array
     {
-        $this->id++;
         return [
             'name' => $this->faker->word,
-            'team_id' => $this->id,
         ];
     }
 }

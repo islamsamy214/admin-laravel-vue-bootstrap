@@ -31,6 +31,16 @@ class RoleController extends Controller
     public function update(Role $role, UpdateRoleRequest $request)
     {
         $role->update($request->validated());
+        $team = $role->team;
+        if ($team !== null) {
+            $roundIds = $team->rounds->pluck('id');
+            // get the old rate form the pivot table
+            $rate = $team->load('rounds')->first()->pivot->rate;
+            dd($rate);
+            // add the new rate to the old rate
+            $rate += $role->round_rate;
+            $team->rounds()->updateExistingPivot($roundIds, ['rate' => $rate]);
+        }
         return $this->apiSuccessResponse('Role Play updated successfully');
     } // end of update
 }

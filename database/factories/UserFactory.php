@@ -13,14 +13,14 @@ class UserFactory extends Factory
 {
     protected $model = User::class;
 
-    private $id = 0;
+    private $role_id = 0;
+    private $team_id = 0;
 
     public function definition()
     {
-        $this->id++;
-        if ($this->id >= 4) {
-            $this->id = 1;
-        }
+        $this->role_id = ($this->role_id % 12) + 1;
+        $this->team_id = ($this->team_id % 6) + 1;
+        
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
@@ -29,8 +29,8 @@ class UserFactory extends Factory
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
             'type' => 'member',
-            'role_id' => $this->id,
-            'team_id' => $this->faker->numberBetween(1, 3),
+            'role_id' => $this->role_id,
+            'team_id' => $this->team_id,
         ];
     }
 

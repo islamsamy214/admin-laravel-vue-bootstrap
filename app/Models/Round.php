@@ -11,8 +11,8 @@ class Round extends Model
 
     protected $guarded = [];
 
-    public function team()
+    public function teams()
     {
-        return $this->belongsTo(Team::class);
-    } // end of team relationship
+        return $this->belongsToMany(Team::class,'rounds_teams')->withPivot('rate');
+    } // end of teams relationship
 }

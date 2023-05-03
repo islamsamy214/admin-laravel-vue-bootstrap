@@ -107,6 +107,13 @@ class RoleController extends Controller
             'closing_rate' => NULL,
             'product_rate' => NULL,
         ]);
+        $team = $role->team;
+        if ($team !== null) {
+            $roundIds = $team->rounds->pluck('id');
+            $team->rounds()->updateExistingPivot($roundIds, ['rate' => null]);
+        }
+        
+
         return response()->json(__('Rates Flushed Successfully'));
     } //end of flushRates
 }

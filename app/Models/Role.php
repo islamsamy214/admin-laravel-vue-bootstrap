@@ -11,9 +11,9 @@ class Role extends Model
 
     protected $guarded = [];
 
-    protected $appends = ['rate'];
+    protected $appends = ['round_rate'];
 
-    public function getRateAttribute()
+    public function getRoundRateAttribute()
     {
         return ($this->opening_rate + $this->probing_rate + $this->delivering_rate + $this->objection_rate + $this->closing_rate + $this->product_rate) / 6;
     } // end of rate attribute

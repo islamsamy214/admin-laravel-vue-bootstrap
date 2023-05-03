@@ -1,8 +1,10 @@
 <template>
     <div>
-        <div class="sidebar-sticky pt-3">
+        <div
+            class="sidebar-sticky pt-3 d-flex flex-column justify-content-between"
+        >
             <ul class="nav flex-column">
-                <li class="nav-item mb-5 ">
+                <li class="nav-item mb-5">
                     <router-link
                         class="nav-link"
                         :class="{
@@ -12,10 +14,14 @@
                         }"
                         :to="{ name: 'admin.dashboard' }"
                     >
-                         <img src="/Logo.svg" alt="logo">
+                        <img
+                            src="/Logo.svg"
+                            class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}"
+                            alt=""
+                        />
                     </router-link>
                 </li>
-                <li class="nav-item ">
+                <!-- <li class="nav-item">
                     <router-link
                         class="nav-link"
                         :class="{
@@ -45,7 +51,7 @@
                     class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
                 >
                     <span>Collections</span>
-                </h6>
+                </h6> -->
 
                 <li class="nav-item">
                     <router-link
@@ -56,7 +62,10 @@
                                 this.$route.fullPath.split('/')[2] == 'teams',
                         }"
                     >
-                        Teams
+                        <h5 class="d-flex align-items-center">
+                            <Icon icon="ph:microsoft-teams-logo-duotone" />
+                            <span>Teams</span>
+                        </h5>
                     </router-link>
                 </li>
 
@@ -69,7 +78,10 @@
                                 this.$route.fullPath.split('/')[2] == 'roles',
                         }"
                     >
-                        Roles
+                        <h5 class="d-flex align-items-center">
+                            <Icon icon="solar:clapperboard-open-play-broken" />
+                            <span>Roles</span>
+                        </h5>
                     </router-link>
                 </li>
 
@@ -82,15 +94,12 @@
                                 this.$route.fullPath.split('/')[2] == 'users',
                         }"
                     >
-                        Users
+                        <h5 class="d-flex align-items-center">
+                            <Icon icon="solar:users-group-rounded-broken" />
+                            <span>Users</span>
+                        </h5>
                     </router-link>
                 </li>
-                <li class="nav-item logout ">
-                    <div class="nav-link" @click="logout">
-                        Logout
-                    </div>
-                </li>
-
 
                 <li class="nav-item">
                     <router-link
@@ -101,8 +110,30 @@
                                 this.$route.fullPath.split('/')[2] == 'rounds',
                         }"
                     >
-                        Rounds
+                        <h5 class="d-flex align-items-center">
+                            <Icon icon="ic:round-30fps-select" />
+                            <span>Rounds</span>
+                        </h5>
                     </router-link>
+                </li>
+            </ul>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <div class="nav-link">
+                        <h6 class="d-flex align-items-center">
+                            <Icon icon="ph:user-bold" />
+                            <span>{{user.name}}</span>
+                        </h6>
+                    </div>
+                </li>
+
+                <li class="nav-item logout">
+                    <div class="nav-link" @click="logout">
+                        <h5 class="d-flex align-items-center text-danger">
+                            <Icon icon="solar:logout-outline" />
+                            <span>Logout</span>
+                        </h5>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -111,17 +142,46 @@
 
 <script>
 import store from "../../../store";
+import { mapGetters } from "vuex";
+
 export default {
+    data() {
+        return {
+            siteName: null,
+        };
+    }, //end of data
+
+    computed: {
+        ...mapGetters({
+            user: "adminAuth/user",
+            isLoggedIn: "adminAuth/isLoggedIn",
+        }),
+    }, //end of computed
+
     methods: {
         logout() {
-      axios.post("/api/admin/logout", this.user).then((response) => {
-        if (response.status == 200) {
-          store.commit("adminAuth/logout");
-          this.$router.push({ name: "admin.login" });
-        }
-      });
-    }, //end of logout
-},
+            axios.post("/api/admin/logout", this.user).then((response) => {
+                if (response.status == 200) {
+                    store.commit("adminAuth/logout");
+                    this.$router.push({ name: "admin.login" });
+                }
+            });
+        }, //end of logout
+
+        retriveSiteName() {
+            axios
+                .get("/api/admin/settings")
+                .then((response) => {
+                    this.siteName = response.data.site_name;
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }, //end of retrive siteName
+    },
+    created() {
+        this.retriveSiteName();
+    }, //end of created
 };
 </script>
 
@@ -129,11 +189,8 @@ export default {
 /*
  * Sidebar
  */
- .logout{
+.logout {
     cursor: pointer;
- }
-li.nav-item a.nav-link {
-    font-size: 14px;
 }
 
 .sidebar {
@@ -183,5 +240,11 @@ li.nav-item a.nav-link {
 .sidebar-heading {
     font-size: 0.75rem;
     text-transform: uppercase;
+}
+svg {
+    margin: 0 10px;
+}
+h5{
+    opacity: 0.8;
 }
 </style>

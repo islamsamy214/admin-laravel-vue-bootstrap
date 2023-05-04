@@ -28,4 +28,5 @@ Route::group(['as' => 'api.'], function () {
     // teams
     Route::get('teams', [TeamController::class, 'index'])->name('teams.index');
     Route::get('teams/{team}', [TeamController::class, 'show'])->name('teams.show');
+    Route::get('presentation/{team}', [TeamController::class, 'getPresentation'])->name('presentation.show');
 });

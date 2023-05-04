@@ -23,6 +23,7 @@ class UpdateRoundRequest extends FormRequest
     {
         return [
             'team_id' => 'required|exists:teams,id',
+            'is_presentation' => 'required|boolean',
         ];
     }
 }

@@ -110,7 +110,7 @@ class RoleController extends Controller
         $team = $role->team;
         if ($team !== null) {
             $roundIds = $team->rounds->pluck('id');
-            $team->rounds()->updateExistingPivot($roundIds, ['rate' => null]);
+            $team->rounds()->updateExistingPivot($roundIds, ['rate' => null, 'is_presentation' => 0 , 'opening_rate' => NULL, 'probing_rate' => NULL, 'delivering_rate' => NULL, 'objection_rate' => NULL, 'closing_rate' => NULL, 'product_rate' => NULL]);
         }
         
 

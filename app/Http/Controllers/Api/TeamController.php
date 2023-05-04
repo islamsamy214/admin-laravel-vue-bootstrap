@@ -25,7 +25,20 @@ class TeamController extends Controller
 
     public function getPresentation(Team $team)
     {
-        $presentation = $team->rounds->where('pivot.is_presentation', 1)->first();
+        $presentation = $team->rounds()->wherePivot('is_presentation', true)->first();
+        
+        // Make sure we retrieve an object before continuing
+        if ($presentation) {
+            // Create a new presentation object with all properties of the original presentation object
+            $extendedPresentation = clone $presentation;
+        
+            // Add the team property to the extended presentation object
+            $extendedPresentation->team = $team;
+        
+            // Use the extended presentation object from now on.
+            $presentation = $extendedPresentation;
+        }
+        
         return $this->apiSuccessResponse($presentation);
     }
 
@@ -49,6 +62,19 @@ class TeamController extends Controller
             'product_rate' => ($request->product_rate * 50) / 100
         ];
         $presentation->pivot->update($form_data);
-        return $this->apiSuccessResponse($team->rounds->where('pivot.is_presentation', 1)->first());
+        $presentation = $team->rounds()->wherePivot('is_presentation', true)->first();
+        
+        // Make sure we retrieve an object before continuing
+        if ($presentation) {
+            // Create a new presentation object with all properties of the original presentation object
+            $extendedPresentation = clone $presentation;
+        
+            // Add the team property to the extended presentation object
+            $extendedPresentation->team = $team;
+        
+            // Use the extended presentation object from now on.
+            $presentation = $extendedPresentation;
+        }
+        return $this->apiSuccessResponse($presentation);
     }
 }

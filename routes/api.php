@@ -24,7 +24,7 @@ Route::group(['as' => 'api.'], function () {
     Route::put('rounds/{round}', [RoundController::class, 'update'])->name('rounds.update');
     // roles
     Route::get('roles/{role}', [RoleController::class, 'show'])->name('roles.show');
-    Route::put('roles/{role}', [RoleController::class, 'update'])->name('roles.update');
+    Route::post('roles/{role}', [RoleController::class, 'update'])->name('roles.update');
     // teams
     Route::get('teams', [TeamController::class, 'index'])->name('teams.index');
     Route::get('teams/{team}', [TeamController::class, 'show'])->name('teams.show');

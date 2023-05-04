@@ -21,4 +21,9 @@ class TeamController extends Controller
     {
         return $this->apiSuccessResponse($team->load('users.role'));
     } // end of show
+
+    public function getPresentation(Team $team){
+        $presentation = $team->rounds->where('pivot.is_presentation',1)->first();
+        return $this->apiSuccessResponse($presentation);
+    }
 }

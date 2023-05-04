@@ -34,8 +34,22 @@ class RoleController extends Controller
         if ($team && $team->rounds->contains($request->round_id)) {
             // check if the team has a presentation
             if ($team->rounds->where('id', $request->round_id)->first()->pivot->is_presentation) {
-                $presentation_rate = ($request->opening_rate + $request->probing_rate + $request->delivering_rate + $request->objection_rate + $request->closing_rate + $request->product_rate) / 6;
-                $team->rounds()->syncWithoutDetaching([$request->round_id => ['rate' => $presentation_rate, 'opening_rate' => ($request->opening_rate * 10) / 100, 'probing_rate' => ($request->probing_rate * 10) / 100, 'delivering_rate' => ($request->delivering_rate * 10) / 100, 'objection_rate' => ($request->objection_rate * 10) / 100, 'closing_rate' => ($request->closing_rate * 10) / 100, 'product_rate' => ($request->product_rate * 50) / 100]]);
+                $presentation_rate =
+                    ((($request->opening_rate * 10) / 100)
+                        + (($request->probing_rate * 10) / 100)
+                        + (($request->delivering_rate * 10) / 100)
+                        + (($request->objection_rate * 10) / 100)
+                        + (($request->closing_rate * 10) / 100)
+                        + (($request->product_rate * 50) / 100)) / 10;
+                $team->rounds()->syncWithoutDetaching([$request->round_id => [
+                    'rate' => $presentation_rate,
+                    'opening_rate' => ($request->opening_rate * 10) / 100,
+                    'probing_rate' => ($request->probing_rate * 10) / 100,
+                    'delivering_rate' => ($request->delivering_rate * 10) / 100,
+                    'objection_rate' => ($request->objection_rate * 10) / 100,
+                    'closing_rate' => ($request->closing_rate * 10) / 100,
+                    'product_rate' => ($request->product_rate * 50) / 100
+                ]]);
             } else {
                 $form_data = [
                     'opening_rate' => ($request->opening_rate * 10) / 100,

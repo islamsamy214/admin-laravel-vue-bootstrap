@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Team;
 use App\Http\Traits\GeneralTrait;
+use App\Http\Requests\Api\PresentationRequest;
 
 class TeamController extends Controller
 {
@@ -12,7 +13,7 @@ class TeamController extends Controller
 
     public function index()
     {
-        $teams = Team::with(['rounds','users.role'])->get();
+        $teams = Team::with(['rounds', 'users.role'])->get();
 
         return $this->apiSuccessResponse(['teams' => $teams]);
     } // end of index
@@ -22,8 +23,32 @@ class TeamController extends Controller
         return $this->apiSuccessResponse($team->load('users.role'));
     } // end of show
 
-    public function getPresentation(Team $team){
-        $presentation = $team->rounds->where('pivot.is_presentation',1)->first();
+    public function getPresentation(Team $team)
+    {
+        $presentation = $team->rounds->where('pivot.is_presentation', 1)->first();
         return $this->apiSuccessResponse($presentation);
+    }
+
+    public function updatePresentation(Team $team, PresentationRequest $request)
+    {
+        $presentation = $team->rounds->where('pivot.is_presentation', 1)->first();
+        $presentation_rate =
+            ((($request->opening_rate * 10) / 100)
+            + (($request->probing_rate * 10) / 100)
+            + (($request->delivering_rate * 10) / 100)
+            + (($request->objection_rate * 10) / 100)
+            + (($request->closing_rate * 10) / 100)
+            + (($request->product_rate * 50) / 100))/10;
+        $form_data = [
+            'rate' => $presentation_rate,
+            'opening_rate' => ($request->opening_rate * 10) / 100,
+            'probing_rate' => ($request->probing_rate * 10) / 100,
+            'delivering_rate' => ($request->delivering_rate * 10) / 100,
+            'objection_rate' => ($request->objection_rate * 10) / 100,
+            'closing_rate' => ($request->closing_rate * 10) / 100,
+            'product_rate' => ($request->product_rate * 50) / 100
+        ];
+        $presentation->pivot->update($form_data);
+        return $this->apiSuccessResponse($team->rounds->where('pivot.is_presentation', 1)->first());
     }
 }

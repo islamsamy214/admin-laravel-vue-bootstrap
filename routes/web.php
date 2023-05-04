@@ -23,10 +23,10 @@ Route::get(
 )->where('any', '^(?!api\/)[\/\w\.\,-]*');
 
 
-Route::get('/t',function(){
-    Round::where('name', 'Round1')->first()->update(['id' => '1']);
-    Round::where('name', 'Round2')->first()->update(['id' => '2']);
-});
+// Route::get('/t',function(){
+//     Round::where('name', 'ROUND1')->first()->update(['id' => '1']);
+//     Round::where('name', 'ROUND2')->first()->update(['id' => '2']);
+// });
 
 
 

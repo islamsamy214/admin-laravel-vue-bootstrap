@@ -27,7 +27,7 @@ class RoundController extends Controller
     {
         // attach team to round if not exist
         $round->teams()->syncWithoutDetaching([$request->team_id => ['is_presentation' => $request->is_presentation]]);
-        $team = Team::findOrFail($request->team_id)->with('roles')->first();
+        $team = Team::with('roles')->findOrFail($request->team_id);
         return $this->apiSuccessResponse(['roles' => $team->roles]);
     } //end of update
 }

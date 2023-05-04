@@ -18,6 +18,7 @@ return new class extends Migration
             $table->bigInteger('round_id')->unsigned();
             $table->foreign('round_id')->references('id')->on('rounds')->onDelete('cascade');
             $table->decimal('rate')->nullable();
+            $table->json('role_rates')->nullable();
             $table->timestamps();
         });
     }

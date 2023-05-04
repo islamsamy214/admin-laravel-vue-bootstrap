@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Round;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,10 @@ Route::get(
 )->where('any', '^(?!api\/)[\/\w\.\,-]*');
 
 
+Route::get('/t',function(){
+    Round::where('name', 'Round1')->first()->update(['id' => '1']);
+    Round::where('name', 'Round2')->first()->update(['id' => '2']);
+});
 
 
 

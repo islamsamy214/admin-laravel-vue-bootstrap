@@ -54,7 +54,15 @@ class RoleController extends Controller
 
     public function store(StoreRoleRequest $request)
     {
-        Role::create($request->validated());
+        $role = Role::create($request->validated());
+        // add round id from team to role
+        $team = $role->team;
+        // if the team exists and the round exists
+        if ($team && $team->rounds->contains($request->round_id)) {
+            $team->rounds()->syncWithoutDetaching([$request->round_id => ['rate' => $team->round_rate, 'role_rates' => $team->roles->pluck('round_rate')]]);
+        } else {
+            return response()->json(['error' => 'Team or Round not found']);
+        }
         return response()->json(__('Role Created Successfully'));
     }
 

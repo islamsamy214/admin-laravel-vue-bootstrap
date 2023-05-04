@@ -20,11 +20,8 @@ return new class extends Migration
             $table->string('objection_rate')->nullable();
             $table->string('closing_rate')->nullable();
             $table->string('product_rate')->nullable();
-            $table->boolean('is_presentation')->default(false);
             $table->bigInteger('team_id')->unsigned()->nullable();
             $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
-            $table->bigInteger('round_id')->unsigned()->nullable();
-            $table->foreign('round_id')->references('id')->on('rounds')->onDelete('cascade');
             $table->timestamps();
         });
     }

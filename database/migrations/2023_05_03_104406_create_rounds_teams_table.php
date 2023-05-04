@@ -19,6 +19,15 @@ return new class extends Migration
             $table->foreign('round_id')->references('id')->on('rounds')->onDelete('cascade');
             $table->decimal('rate')->nullable();
             $table->json('role_rates')->nullable();
+
+            $table->boolean('is_presentation')->default(false);
+            $table->string('opening_rate')->nullable();
+            $table->string('probing_rate')->nullable();
+            $table->string('delivering_rate')->nullable();
+            $table->string('objection_rate')->nullable();
+            $table->string('closing_rate')->nullable();
+            $table->string('product_rate')->nullable();
+
             $table->timestamps();
         });
     }

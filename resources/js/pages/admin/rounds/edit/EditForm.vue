@@ -29,7 +29,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
+                            <!-- <div class="form-group row">
                                 <label
                                     for="name"
                                     class="col-md-2 col-form-label text-md-right"
@@ -44,7 +44,7 @@
                                         :options="options"
                                     />
                                 </div>
-                            </div>
+                            </div> -->
 
                             <!-- start of error section -->
                             <div

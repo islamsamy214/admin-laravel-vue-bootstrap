@@ -39,4 +39,4 @@ class RoleController extends Controller
         }
         return $this->apiSuccessResponse('Role Play updated successfully');
     } // end of update
-}
+} // end of RoleController

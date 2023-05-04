@@ -27,4 +27,9 @@ class Role extends Model
     {
         return $this->hasMany(User::class);
     } // end of user relationship
+
+    public function round()
+    {
+        return $this->belongsTo(Round::class);
+    } // end of round relationship
 }

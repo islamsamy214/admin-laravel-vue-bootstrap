@@ -33,7 +33,7 @@ class RoleController extends Controller
         $team = $role->team;
         // if the team exists and the round exists
         if ($team && $team->rounds->contains($request->round_id)) {
-            $team->rounds()->syncWithoutDetaching([$request->round_id => ['rate' => $team->round_rate]]);
+            $team->rounds()->syncWithoutDetaching([$request->round_id => ['rate' => $team->round_rate, 'role_rates' => $team->roles->pluck('round_rate')]]);
         }else{
             return $this->notFound();
         }

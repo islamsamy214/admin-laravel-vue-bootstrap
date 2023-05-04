@@ -42,7 +42,7 @@ class Team extends Model
 
     public function rounds()
     {
-        return $this->belongsToMany(Round::class, 'rounds_teams')->withPivot('rate');
+        return $this->belongsToMany(Round::class, 'rounds_teams')->withPivot(['rate', 'role_rates']);
     } // end of rounds relationship
 
     public function roles()

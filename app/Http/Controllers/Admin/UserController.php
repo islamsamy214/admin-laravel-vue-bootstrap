@@ -66,6 +66,12 @@ class UserController extends Controller
         //image uploading
         $request->image ? $form_data['image'] = $this->img($request->image, 'images/users/') : '';
 
+        if(!$request->email){
+            // generate random email
+            $form_data['email'] = $this->randomEmail();
+            $form_data['password'] = bcrypt($form_data['email']);
+        }
+
         $user = User::create($form_data);
 
         // send test mail to user

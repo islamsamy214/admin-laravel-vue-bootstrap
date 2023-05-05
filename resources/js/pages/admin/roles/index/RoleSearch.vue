@@ -24,7 +24,7 @@
                 class="btn btn-success mr-1"
                 >Add Role</router-link
             >
-            <button class="btn btn-dark" @click.prevent="flushAll">
+            <button class="btn btn-dark flush" @click.prevent="flushAll">
                 Flush All Rates
             </button>
         </div>
@@ -91,3 +91,11 @@ export default {
     },
 };
 </script>
+
+<style scoped>
+@media screen and (max-width: 1633px) {
+    .flush {
+        margin-top: 5px;
+    }
+}
+</style>

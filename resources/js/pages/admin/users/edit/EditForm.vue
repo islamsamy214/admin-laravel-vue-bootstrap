@@ -336,7 +336,7 @@ export default {
             }
         }, //end of type
 
-        role(newRole) {
+        roleId(newRole) {
             if (newRole == this.oldRole) {
                 this.sameValue = true;
             } else {
@@ -344,7 +344,7 @@ export default {
             }
         }, //end of role
 
-        team(newTeam) {
+        teamId(newTeam) {
             if (newTeam == this.oldTeam) {
                 this.sameValue = true;
             } else {

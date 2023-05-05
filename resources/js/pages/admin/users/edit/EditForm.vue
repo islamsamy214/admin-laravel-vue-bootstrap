@@ -29,7 +29,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
+                            <!-- <div class="form-group row">
                                 <label
                                     for="email"
                                     class="col-md-2 col-form-label text-md-right"
@@ -47,7 +47,7 @@
                                         v-model="email"
                                     />
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="form-group row">
                                 <label
@@ -114,7 +114,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
+                            <!-- <div class="form-group row">
                                 <label
                                     for="password"
                                     class="col-md-2 col-form-label text-md-right"
@@ -152,9 +152,9 @@
                                         v-model="password_confirmation"
                                     />
                                 </div>
-                            </div>
+                            </div> -->
 
-                            <div class="form-group row">
+                            <!-- <div class="form-group row">
                                 <label
                                     for="image"
                                     class="col-md-2 col-form-label text-md-right"
@@ -170,7 +170,7 @@
                                         @change="uploadImage"
                                     />
                                 </div>
-                            </div>
+                            </div> -->
 
                             <!-- start of error section -->
                             <div

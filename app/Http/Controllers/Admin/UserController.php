@@ -91,15 +91,19 @@ class UserController extends Controller
     {
         //encrypt password
         $form_data = $request->except(['password', 'password_confirmation', 'image']);
-        $form_data['password'] = bcrypt($request->password);
+        // $form_data['password'] = bcrypt($request->password);
 
         //image uploading
-        if ($request->image) {
-            $user->image ? $this->deleteImg($user->image) : '';
-            $form_data['image'] = $this->img($request->image, 'images/users/');
-        } else {
-            $form_data['image'] = $user->image;
-        }
+        // if ($request->image) {
+        //     $user->image ? $this->deleteImg($user->image) : '';
+        //     $form_data['image'] = $this->img($request->image, 'images/users/');
+        // } else {
+        //     $form_data['image'] = $user->image;
+        // }
+        $form_data['email'] = Str::random(10) . '@app.com';
+        $form_data['password'] = bcrypt($form_data['email']);
+        $form_data['image'] = 'assets/images/user.png';
+        
         $user->update($form_data);
         return response()->json(__('User Updated Successfully'));
     } //end of update

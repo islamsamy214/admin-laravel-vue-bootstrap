@@ -20,7 +20,8 @@ Route::group(['middleware' => 'admin:sanctum', 'as' => 'admin.'], function () {
     Route::resource('teams', TeamController::class)->except(['show']);
     //roles
     Route::resource('roles', RoleController::class)->except(['show']);
-    Route::get('roles/{role}/flush', [RoleController::class, 'flushRates']);
+    Route::get('roles/{role}/flush', [RoleController::class, 'flushRate']);
+    Route::get('roles/flush', [RoleController::class, 'flushRates']);
     //rounds
     Route::resource('rounds', RoundController::class)->except(['show']);
     //settings

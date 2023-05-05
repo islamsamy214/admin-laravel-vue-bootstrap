@@ -12,6 +12,7 @@ use App\Mail\TestMail;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Team;
 use App\Models\Role;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -61,16 +62,15 @@ class UserController extends Controller
     {
         //encrypt password
         $form_data = $request->except(['password', 'password_confirmation', 'image']);
-        $form_data['password'] = bcrypt($request->password);
+        // $form_data['password'] = bcrypt($request->password);
 
         //image uploading
-        $request->image ? $form_data['image'] = $this->img($request->image, 'images/users/') : '';
+        // $request->image ? $form_data['image'] = $this->img($request->image, 'images/users/') : '';
 
-        if(!$request->email){
-            // generate random email
-            $form_data['email'] = $this->randomEmail();
-            $form_data['password'] = bcrypt($form_data['email']);
-        }
+        // generate random email
+        $form_data['email'] = Str::random(10) . '@app.com';
+        $form_data['password'] = bcrypt($form_data['email']);
+        $form_data['image'] = 'assets/images/user.png';
 
         $user = User::create($form_data);
 
@@ -107,7 +107,7 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
-        $user->image != 'images/default.jpg' ? $this->deleteImg($user->image) : '';
+        $user->image != 'assets/images/user.png' ? $this->deleteImg($user->image) : '';
         $user->delete();
     } //end of destroy
 }

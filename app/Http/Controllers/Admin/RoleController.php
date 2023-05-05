@@ -97,7 +97,7 @@ class RoleController extends Controller
      * Flush the specified resource from storage.
      */
 
-    public function flushRates(Role $role)
+    public function flushRate(Role $role)
     {
         $role->update([
             'opening_rate' => NULL,
@@ -110,10 +110,35 @@ class RoleController extends Controller
         $team = $role->team;
         if ($team !== null) {
             $roundIds = $team->rounds->pluck('id');
-            $team->rounds()->updateExistingPivot($roundIds, ['rate' => null, 'is_presentation' => 0 , 'opening_rate' => NULL, 'probing_rate' => NULL, 'delivering_rate' => NULL, 'objection_rate' => NULL, 'closing_rate' => NULL, 'product_rate' => NULL]);
+            $team->rounds()->updateExistingPivot($roundIds, ['rate' => null, 'role_rates' => NULL, 'is_presentation' => 0, 'opening_rate' => NULL, 'probing_rate' => NULL, 'delivering_rate' => NULL, 'objection_rate' => NULL, 'closing_rate' => NULL, 'product_rate' => NULL]);
         }
-        
+
 
         return response()->json(__('Rates Flushed Successfully'));
     } //end of flushRates
+
+    /**
+     * Flush a resource from storage.
+     */
+
+    public function flushRates()
+    {
+        $roles = Role::all();
+        foreach ($roles as $role) {
+            $role->update([
+                'opening_rate' => NULL,
+                'probing_rate' => NULL,
+                'delivering_rate' => NULL,
+                'objection_rate' => NULL,
+                'closing_rate' => NULL,
+                'product_rate' => NULL,
+            ]);
+            $team = $role->team;
+            if ($team !== null) {
+                $roundIds = $team->rounds->pluck('id');
+                $team->rounds()->updateExistingPivot($roundIds, ['rate' => null, 'role_rates' => NULL, 'is_presentation' => 0, 'opening_rate' => NULL, 'probing_rate' => NULL, 'delivering_rate' => NULL, 'objection_rate' => NULL, 'closing_rate' => NULL, 'product_rate' => NULL]);
+            }
+        }
+        return response()->json(__('Rates Flushed Successfully'));
+    }
 }

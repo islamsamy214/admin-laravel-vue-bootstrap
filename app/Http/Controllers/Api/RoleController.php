@@ -40,7 +40,7 @@ class RoleController extends Controller
                         + (($request->delivering_rate * 10) / 100)
                         + (($request->objection_rate * 10) / 100)
                         + (($request->closing_rate * 10) / 100)
-                        + (($request->product_rate * 50) / 100)) / 10;
+                        + (($request->product_rate * 50) / 100)) / 6;
                 $team->rounds()->syncWithoutDetaching([$request->round_id => [
                     'rate' => $presentation_rate,
                     'opening_rate' => ($request->opening_rate * 10) / 100,

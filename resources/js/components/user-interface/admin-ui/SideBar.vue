@@ -4,7 +4,6 @@
             class="sidebar-sticky pt-3 d-flex flex-column justify-content-between"
         >
             <ul class="nav flex-column">
-                hello
                 <li class="nav-item mb-5">
                     <router-link
                         class="nav-link"

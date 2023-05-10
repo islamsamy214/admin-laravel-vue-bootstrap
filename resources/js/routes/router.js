@@ -16,16 +16,24 @@ const router = createRouter({
             path: "/",
             component: WebLayout,
             children: web,
+<<<<<<< HEAD
             // redirect: { name: "admin.dashboard" }
             redirect: { name: "admin.teams" }
+=======
+            redirect: { name: "admin.dashboard" }
+>>>>>>> aaa72e8d5ba4cbb920c34c85189f8aaa5318b845
         },
         {
             name: "admin",
             path: "/admin",
             component: AdminLayout,
             children: admin,
+<<<<<<< HEAD
             // redirect: { name: "admin.dashboard" }
             redirect: { name: "admin.teams" }
+=======
+            redirect: { name: "admin.dashboard" }
+>>>>>>> aaa72e8d5ba4cbb920c34c85189f8aaa5318b845
         },
         // admin auth
         {

@@ -19,9 +19,13 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+<<<<<<< HEAD
 /public/node_modules/images/**
 composer.lock
 composer.lock
 /public/js/app.js
 /public/js/app.js.map
 /public/js/app.js.LICENSE.txt
+=======
+/public/node_modules/images/**
+>>>>>>> aaa72e8d5ba4cbb920c34c85189f8aaa5318b845

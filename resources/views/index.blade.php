@@ -22,4 +22,8 @@
     <script src="{{ mix('js/app.js') }}"></script>
 </body>
 
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> aaa72e8d5ba4cbb920c34c85189f8aaa5318b845

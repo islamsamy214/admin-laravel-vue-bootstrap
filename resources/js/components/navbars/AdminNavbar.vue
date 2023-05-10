@@ -5,7 +5,11 @@
     >
       <router-link
         class="navbar-brand col-md-3 col-lg-2 mr-0 px-3"
+<<<<<<< HEAD
         :to="{ name: 'admin.dashboard' }"
+=======
+        :to="{ name: 'home' }"
+>>>>>>> aaa72e8d5ba4cbb920c34c85189f8aaa5318b845
         >{{ siteName }}</router-link
       >
       <button
@@ -121,4 +125,8 @@ export default {
   border-color: transparent;
   box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
 }
+<<<<<<< HEAD
 </style> 
+=======
+</style>
+>>>>>>> aaa72e8d5ba4cbb920c34c85189f8aaa5318b845

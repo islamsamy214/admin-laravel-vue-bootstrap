@@ -1,6 +1,7 @@
 <template>
   <div>
     <loading-ui v-if="pageLoading"></loading-ui>
+<<<<<<< HEAD
     <table class="table table-striped table-responsive-sm table-responsive-md" v-else>
       <thead>
         <tr>
@@ -9,11 +10,24 @@
           <th scope="col">Type</th>
           <th scope="col">Email</th>
           <th scope="col">Action</th>
+=======
+    <table
+      class="table table-striped table-responsive-sm table-responsive-md"
+      v-else
+    >
+      <thead>
+        <tr>
+          <th scope="col">Image</th>
+          <th scope="col">name</th>
+          <th scope="col">email</th>
+          <th scope="col">Handle</th>
+>>>>>>> aaa72e8d5ba4cbb920c34c85189f8aaa5318b845
         </tr>
       </thead>
       <tbody>
         <tr v-for="user in users" :key="user.id">
           <td>
+<<<<<<< HEAD
             <img :src="user.image_path" class="img-thumbnail" style="width: 40px; max-height: 40px" />
           </td>
           <td>{{ user.name }}</td>
@@ -23,6 +37,26 @@
             <router-link class="btn btn-warning ml-1 mt-1"
               :to="{ name: 'admin.users.edit', query: { id: user.id } }">Edit</router-link>
             <button class="btn btn-danger ml-1 mt-1" @click="deleteUser(user.id)">
+=======
+            <img
+              :src="user.image_path"
+              class="img-thumbnail"
+              style="width: 40px; max-height: 40px"
+            />
+          </td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>
+            <router-link
+              class="btn btn-warning ml-1 mt-1"
+              :to="{ name: 'admin.users.edit', query: { id: user.id } }"
+              >Edit</router-link
+            >
+            <button
+              class="btn btn-danger ml-1 mt-1"
+              @click="deleteUser(user.id)"
+            >
+>>>>>>> aaa72e8d5ba4cbb920c34c85189f8aaa5318b845
               Delete
             </button>
           </td>
@@ -37,7 +71,10 @@ export default {
   emits: ["userDeleted"],
   methods: {
     deleteUser(id) {
+<<<<<<< HEAD
       let __this = this;
+=======
+>>>>>>> aaa72e8d5ba4cbb920c34c85189f8aaa5318b845
       var deleteConfirmation = new Noty({
         layout: "center",
         killer: true,
@@ -66,6 +103,7 @@ export default {
           .delete(`/api/admin/users/${id}`)
           .then((response) => {
             if (response.status == 200) {
+<<<<<<< HEAD
               __this.$emit("userDeleted", id);
               deleteConfirmation.close();
               new Noty({
@@ -74,6 +112,9 @@ export default {
                 type: "success",
                 timeout: 2000,
               }).show();
+=======
+              location.reload();
+>>>>>>> aaa72e8d5ba4cbb920c34c85189f8aaa5318b845
             }
           })
           .catch((error) => {

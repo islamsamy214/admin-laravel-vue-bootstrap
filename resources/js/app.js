@@ -4,10 +4,7 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./routes/router.js";
 import store from "./store/index";
-<<<<<<< HEAD
 import { Icon } from '@iconify/vue';
-=======
->>>>>>> aaa72e8d5ba4cbb920c34c85189f8aaa5318b845
 
 import PageHeader from "./components/user-interface/admin-ui/PageHeader.vue";
 import LoadingUi from "./components/user-interface/LoadingUi.vue";
@@ -20,10 +17,7 @@ app.use(store);
 app.component("page-header", PageHeader);
 app.component("loading-ui", LoadingUi);
 app.component("section-header", SectionHeader);
-<<<<<<< HEAD
 app.component('Icon', Icon);
-=======
->>>>>>> aaa72e8d5ba4cbb920c34c85189f8aaa5318b845
 
 app.mount("#app");
 

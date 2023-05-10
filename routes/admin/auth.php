@@ -10,14 +10,9 @@ use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
-<<<<<<< HEAD
 use Illuminate\Http\Request;
 
 Route::group(['as' => 'admin.'], function () {
-=======
-
-Route::group(['middleware' => 'guest', 'as' => 'admin.'], function () {
->>>>>>> aaa72e8d5ba4cbb920c34c85189f8aaa5318b845
     Route::get('register', [RegisteredUserController::class, 'create'])
         ->name('register');
 
@@ -26,11 +21,7 @@ Route::group(['middleware' => 'guest', 'as' => 'admin.'], function () {
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
         ->name('login');
 
-<<<<<<< HEAD
     Route::post('login', [AuthenticatedSessionController::class, 'store'])->name('login');
-=======
-    Route::post('login', [AuthenticatedSessionController::class, 'store']);
->>>>>>> aaa72e8d5ba4cbb920c34c85189f8aaa5318b845
 
     Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
         ->name('password.request');
@@ -45,16 +36,12 @@ Route::group(['middleware' => 'guest', 'as' => 'admin.'], function () {
         ->name('password.store');
 });
 
-<<<<<<< HEAD
 Route::group(['middleware' => 'admin:sanctum', 'as' => 'admin.'], function () {
     // auth user
     Route::get('/user', function (Request $request) {
         return $request->user();
     })->name('user');
     
-=======
-Route::group(['middleware' => 'auth:sanctum', 'as' => 'admin.'], function () {
->>>>>>> aaa72e8d5ba4cbb920c34c85189f8aaa5318b845
     Route::get('verify-email', EmailVerificationPromptController::class)
         ->name('verification.notice');
 

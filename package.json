@@ -10,10 +10,7 @@
         "production": "mix --production"
     },
     "devDependencies": {
-<<<<<<< HEAD
         "@iconify/vue": "^4.1.1",
-=======
->>>>>>> aaa72e8d5ba4cbb920c34c85189f8aaa5318b845
         "alpinejs": "^3.4.2",
         "autoprefixer": "^10.4.2",
         "axios": "^1.1.2",
@@ -23,25 +20,15 @@
         "popper.js": "1.16",
         "resolve-url-loader": "^3.1.2",
         "sass": "^1.60.0",
-<<<<<<< HEAD
         "sass-loader": "^13.2.2",
-=======
-        "sass-loader": "^13.2.1",
->>>>>>> aaa72e8d5ba4cbb920c34c85189f8aaa5318b845
         "vue": "^3.2.47",
         "vue-loader": "^16.8.3"
     },
     "dependencies": {
-<<<<<<< HEAD
         "@vueform/multiselect": "^2.6.2",
         "jquery": "^3.6.4",
         "lodash": "^4.17.21",
         "node-sass": "^8.0.0",
-=======
-        "chart.js": "^3.5.0",
-        "jquery": "^3.6.4",
-        "lodash": "^4.17.21",
->>>>>>> aaa72e8d5ba4cbb920c34c85189f8aaa5318b845
         "noty": "^3.2.0-beta-deprecated",
         "postcss": "^8.4.21",
         "postcss-import": "^15.1.0",

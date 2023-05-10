@@ -45,11 +45,7 @@ php artisan serve
 ```
 
 and open this URL in your browser `127.0.0.1:8000`
-<<<<<<< HEAD
 use this these credentials for login email: `super_admin@app.com` pass: `12345678`
-=======
-use this these credentials for login email: `super_admin@app.com` pass: `123456789`
->>>>>>> aaa72e8d5ba4cbb920c34c85189f8aaa5318b845
 
 ## Development
 

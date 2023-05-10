@@ -10,12 +10,9 @@ use App\Http\Requests\Admin\User\StoreUserRequest;
 use App\Http\Requests\Admin\User\UpdateUserRequest;
 use App\Mail\TestMail;
 use Illuminate\Support\Facades\Mail;
-<<<<<<< HEAD
 use App\Models\Team;
 use App\Models\Role;
 use Illuminate\Support\Str;
-=======
->>>>>>> aaa72e8d5ba4cbb920c34c85189f8aaa5318b845
 
 class UserController extends Controller
 {
@@ -56,19 +53,15 @@ class UserController extends Controller
         return $users;
     } //end of getSearch
 
-<<<<<<< HEAD
     public function create()
     {
         return response()->json(['teams' => Team::all(), 'roles' => Role::all()]);
     } //end of create
-=======
->>>>>>> aaa72e8d5ba4cbb920c34c85189f8aaa5318b845
 
     public function store(StoreUserRequest $request)
     {
         //encrypt password
         $form_data = $request->except(['password', 'password_confirmation', 'image']);
-<<<<<<< HEAD
         // $form_data['password'] = bcrypt($request->password);
 
         //image uploading
@@ -78,21 +71,11 @@ class UserController extends Controller
         $form_data['email'] = Str::random(10) . '@app.com';
         $form_data['password'] = bcrypt($form_data['email']);
         $form_data['image'] = 'assets/images/user.png';
-=======
-        $form_data['password'] = bcrypt($request->password);
-
-        //image uploading
-        $request->image ? $form_data['image'] = $this->img($request->image, 'images/users/') : '';
->>>>>>> aaa72e8d5ba4cbb920c34c85189f8aaa5318b845
 
         $user = User::create($form_data);
 
         // send test mail to user
-<<<<<<< HEAD
         // Mail::to($user)->send(new TestMail($user));
-=======
-        Mail::to($user)->send(new TestMail($user));
->>>>>>> aaa72e8d5ba4cbb920c34c85189f8aaa5318b845
 
         return response()->json(__('User Created Successfully'));
     } //end of store
@@ -100,11 +83,7 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-<<<<<<< HEAD
         return response()->json(['user' => $user, 'teams' => Team::all(), 'roles' => Role::all()]);
-=======
-        return $user;
->>>>>>> aaa72e8d5ba4cbb920c34c85189f8aaa5318b845
     } //end of edit
 
 
@@ -112,7 +91,6 @@ class UserController extends Controller
     {
         //encrypt password
         $form_data = $request->except(['password', 'password_confirmation', 'image']);
-<<<<<<< HEAD
         // $form_data['password'] = bcrypt($request->password);
 
         //image uploading
@@ -126,17 +104,6 @@ class UserController extends Controller
         $form_data['password'] = bcrypt($form_data['email']);
         $form_data['image'] = 'assets/images/user.png';
         
-=======
-        $form_data['password'] = bcrypt($request->password);
-
-        //image uploading
-        if ($request->image) {
-            $user->image ? $this->deleteImg($user->image) : '';
-            $form_data['image'] = $this->img($request->image, 'images/users/');
-        } else {
-            $form_data['image'] = $user->image;
-        }
->>>>>>> aaa72e8d5ba4cbb920c34c85189f8aaa5318b845
         $user->update($form_data);
         return response()->json(__('User Updated Successfully'));
     } //end of update
@@ -144,11 +111,7 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
-<<<<<<< HEAD
         $user->image != 'assets/images/user.png' ? $this->deleteImg($user->image) : '';
-=======
-        $user->image != 'images/default.jpg' ? $this->deleteImg($user->image) : '';
->>>>>>> aaa72e8d5ba4cbb920c34c85189f8aaa5318b845
         $user->delete();
     } //end of destroy
 }

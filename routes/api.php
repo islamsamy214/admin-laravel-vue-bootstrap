@@ -1,14 +1,9 @@
 <?php
-<<<<<<< HEAD
 
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\RoundController;
 use App\Http\Controllers\Api\TeamController;
 use Illuminate\Support\Facades\Route;
-=======
-use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
->>>>>>> aaa72e8d5ba4cbb920c34c85189f8aaa5318b845
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +16,6 @@ use Illuminate\Http\Request;
 |
 */
 
-<<<<<<< HEAD
 require __DIR__ . '/auth.php';
 
 Route::group(['as' => 'api.'], function () {
@@ -37,8 +31,3 @@ Route::group(['as' => 'api.'], function () {
     Route::get('presentation/{team}', [TeamController::class, 'getPresentation'])->name('presentation.show');
     Route::put('presentation/{team}', [TeamController::class, 'updatePresentation'])->name('presentation.update');
 });
-=======
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
->>>>>>> aaa72e8d5ba4cbb920c34c85189f8aaa5318b845

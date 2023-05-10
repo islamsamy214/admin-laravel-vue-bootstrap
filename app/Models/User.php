@@ -51,7 +51,6 @@ class User extends Authenticatable
         return asset($this->image);
     } //end of retreving image directly
 
-<<<<<<< HEAD
     public function role()
     {
         return $this->belongsTo(Role::class);
@@ -61,15 +60,4 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Team::class);
     } // end of team relationship
-=======
-    public function posts()
-    {
-        return $this->hasMany(Post::class);
-    } //end of posts relation
-
-    public function comments()
-    {
-        return $this->hasMany(Comment::class);
-    } //end of comments relation
->>>>>>> aaa72e8d5ba4cbb920c34c85189f8aaa5318b845
 }

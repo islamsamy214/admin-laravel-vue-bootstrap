@@ -6,7 +6,6 @@ import CreateUser from "./../pages/admin/users/create/CreateUser.vue";
 import EditUser from "./../pages/admin/users/edit/EditUser.vue";
 // settings imports
 import SettingPage from "./../pages/admin/settings/SettingPage.vue";
-<<<<<<< HEAD
 // team imports
 import TeamPage from "./../pages/admin/teams/index/TeamPage.vue";
 import CreateTeam from "./../pages/admin/teams/create/CreateTeam.vue";
@@ -21,10 +20,6 @@ import CreateRound from "./../pages/admin/rounds/create/CreateRound.vue";
 import EditRound from "./../pages/admin/rounds/edit/EditRound.vue";
 
 
-=======
-// home page imports
-import HomePage from "./../pages/admin/home/HomePage.vue";
->>>>>>> aaa72e8d5ba4cbb920c34c85189f8aaa5318b845
 
 const admin = [
     ////////////////////////////////// admin routes ////////////////////////////
@@ -32,42 +27,26 @@ const admin = [
     {
         name: "admin.dashboard",
         path: "dashboard",
-<<<<<<< HEAD
         component: DashboardPage,
-=======
-        component: DashboardPage
->>>>>>> aaa72e8d5ba4cbb920c34c85189f8aaa5318b845
     },
     // users
     {
         name: "admin.users",
         path: "users",
         component: UserPage,
-<<<<<<< HEAD
         props: true,
-=======
-        props: true
->>>>>>> aaa72e8d5ba4cbb920c34c85189f8aaa5318b845
     },
     {
         name: "admin.users.create",
         path: "users/add",
         component: CreateUser,
-<<<<<<< HEAD
         props: true,
-=======
-        props: true
->>>>>>> aaa72e8d5ba4cbb920c34c85189f8aaa5318b845
     },
     {
         name: "admin.users.edit",
         path: "users/edit",
         component: EditUser,
-<<<<<<< HEAD
         props: true,
-=======
-        props: true
->>>>>>> aaa72e8d5ba4cbb920c34c85189f8aaa5318b845
     },
     //settings
     {
@@ -75,7 +54,6 @@ const admin = [
         path: "settings",
         component: SettingPage,
     },
-<<<<<<< HEAD
     // teams
     {
         name: "admin.teams",
@@ -135,14 +113,6 @@ const admin = [
     },
 
 
-=======
-    //home page
-    {
-        name: "admin.home",
-        path: "home",
-        component: HomePage,
-    }
->>>>>>> aaa72e8d5ba4cbb920c34c85189f8aaa5318b845
 ];
 
 export default admin;

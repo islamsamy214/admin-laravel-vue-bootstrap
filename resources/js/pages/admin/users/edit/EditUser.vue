@@ -5,11 +5,7 @@
             v-else
             :oldName="oldName"
             :oldEmail="oldEmail"
-            :oldType="oldType"
             :oldRole="oldRole"
-            :oldTeam="oldTeam"
-            :teams="teams"
-            :roles="roles"
             :errors="errors"
             :isLoading="isLoading"
             @submitUser="submitUser"
@@ -26,11 +22,7 @@ export default {
         return {
             oldName: null,
             oldEmail: null,
-            oldType: null,
             oldRole: null,
-            oldTeam: null,
-            teams: null,
-            roles: null,
             errors: null,
             isLoading: false,
         };
@@ -44,11 +36,7 @@ export default {
                 .then((response) => {
                     this.oldName = response.data.user.name;
                     this.oldEmail = response.data.user.email;
-                    this.oldType = response.data.user.type;
-                    this.oldRole = response.data.user.role_id;
-                    this.oldTeam = response.data.user.team_id;
-                    this.teams = response.data.teams;
-                    this.roles = response.data.roles;
+                    this.oldRole = response.data.user.role;
                 })
                 .then(() => {
                     this.isLoading = false;

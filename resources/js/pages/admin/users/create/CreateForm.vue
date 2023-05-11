@@ -29,7 +29,7 @@
                                 </div>
                             </div>
 
-                            <!-- <div class="form-group row">
+                            <div class="form-group row">
                                 <label
                                     for="email"
                                     class="col-md-2 col-form-label text-md-right"
@@ -47,74 +47,23 @@
                                         v-model="email"
                                     />
                                 </div>
-                            </div> -->
+                            </div>
 
                             <div class="form-group row">
                                 <label
                                     for="name"
                                     class="col-md-2 col-form-label text-md-right"
-                                    >Type</label
+                                    >Role</label
                                 >
                                 <div class="col-md-9">
-                                    <select class="form-control" v-model="type">
-                                        <option value="member">Member</option>
-                                        <option value="judge">Judge</option>
+                                    <select class="form-control" v-model="role">
+                                        <option value="user">User</option>
                                         <option value="admin">Admin</option>
                                     </select>
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label
-                                    for="name"
-                                    class="col-md-2 col-form-label text-md-right"
-                                    >Team</label
-                                >
-                                <div class="col-md-9">
-                                    <select
-                                        class="form-control"
-                                        v-model="teamId"
-                                    >
-                                        <option value="null">
-                                            Select Team
-                                        </option>
-                                        <option
-                                            :value="team.id"
-                                            v-for="team in teams"
-                                            :key="team.id"
-                                        >
-                                            {{ team.name }}
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label
-                                    for="name"
-                                    class="col-md-2 col-form-label text-md-right"
-                                    >Role Play</label
-                                >
-                                <div class="col-md-9">
-                                    <select
-                                        class="form-control"
-                                        v-model="roleId"
-                                    >
-                                        <option value="null">
-                                            Select Role Play
-                                        </option>
-                                        <option
-                                            :value="role.id"
-                                            v-for="role in roles"
-                                            :key="role.id"
-                                        >
-                                            {{ role.name }}
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <!-- <div class="form-group row">
                                 <label
                                     for="password"
                                     class="col-md-2 col-form-label text-md-right"
@@ -152,9 +101,9 @@
                                         v-model="password_confirmation"
                                     />
                                 </div>
-                            </div> -->
+                            </div>
 
-                            <!-- <div class="form-group row">
+                            <div class="form-group row">
                                 <label
                                     for="image"
                                     class="col-md-2 col-form-label text-md-right"
@@ -170,7 +119,7 @@
                                         @change="uploadImage"
                                     />
                                 </div>
-                            </div> -->
+                            </div>
 
                             <!-- start of error section -->
                             <div
@@ -202,40 +151,15 @@
                                     </li>
                                     <li
                                         class="list-group-item"
-                                        v-if="errors.type"
+                                        v-if="errors.role"
                                     >
                                         <div
-                                            v-for="error in errors.type"
+                                            v-for="error in errors.role"
                                             :key="error"
                                         >
                                             {{ error }}
                                         </div>
                                     </li>
-                                    
-                                    <li
-                                        class="list-group-item"
-                                        v-if="errors.team_id"
-                                    >
-                                        <div
-                                            v-for="error in errors.team_id"
-                                            :key="error"
-                                        >
-                                            {{ error }}
-                                        </div>
-                                    </li>
-
-                                    <li
-                                        class="list-group-item"
-                                        v-if="errors.role_id"
-                                    >
-                                        <div
-                                            v-for="error in errors.role_id"
-                                            :key="error"
-                                        >
-                                            {{ error }}
-                                        </div>
-                                    </li>
-
                                     <li
                                         class="list-group-item"
                                         v-if="errors.password"
@@ -283,7 +207,7 @@
 
 <script>
 export default {
-    props: ["errors", "isLoading", "teams", "roles"],
+    props: ["errors", "isLoading"],
 
     emits: ["submitUser"],
 
@@ -291,9 +215,7 @@ export default {
         return {
             name: null,
             email: null,
-            type: "member",
-            teamId: null,
-            roleId: null,
+            role: "user",
             password: null,
             password_confirmation: null,
             image: null,
@@ -309,9 +231,7 @@ export default {
             let formData = new FormData();
             formData.append("name", this.name);
             formData.append("email", this.email);
-            formData.append("type", this.type);
-            formData.append("team_id", this.teamId);
-            formData.append("role_id", this.roleId);
+            formData.append("role", this.role);
             formData.append("password", this.password);
             formData.append(
                 "password_confirmation",

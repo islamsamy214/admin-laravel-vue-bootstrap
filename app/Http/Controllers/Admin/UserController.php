@@ -10,9 +10,6 @@ use App\Http\Requests\Admin\User\StoreUserRequest;
 use App\Http\Requests\Admin\User\UpdateUserRequest;
 use App\Mail\TestMail;
 use Illuminate\Support\Facades\Mail;
-use App\Models\Team;
-use App\Models\Role;
-use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -53,26 +50,16 @@ class UserController extends Controller
         return $users;
     } //end of getSearch
 
-    public function create()
-    {
-        return response()->json(['teams' => Team::all(), 'roles' => Role::all()]);
-    } //end of create
-
     public function store(StoreUserRequest $request)
     {
         //encrypt password
         $form_data = $request->except(['password', 'password_confirmation', 'image']);
-        // $form_data['password'] = bcrypt($request->password);
+        $form_data['password'] = bcrypt($request->password);
 
         //image uploading
-        // $request->image ? $form_data['image'] = $this->img($request->image, 'images/users/') : '';
+        $request->image ? $form_data['image'] = $this->img($request->image, 'images/users/') : '';
 
-        // generate random email
-        $form_data['email'] = Str::random(10) . '@app.com';
-        $form_data['password'] = bcrypt($form_data['email']);
-        $form_data['image'] = 'assets/images/user.png';
-
-        $user = User::create($form_data);
+        User::create($form_data);
 
         // send test mail to user
         // Mail::to($user)->send(new TestMail($user));
@@ -83,7 +70,7 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        return response()->json(['user' => $user, 'teams' => Team::all(), 'roles' => Role::all()]);
+        return response()->json(['user' => $user]);
     } //end of edit
 
 
@@ -91,23 +78,19 @@ class UserController extends Controller
     {
         //encrypt password
         $form_data = $request->except(['password', 'password_confirmation', 'image']);
-        // $form_data['password'] = bcrypt($request->password);
+        $form_data['password'] = bcrypt($request->password);
 
         //image uploading
-        // if ($request->image) {
-        //     $user->image ? $this->deleteImg($user->image) : '';
-        //     $form_data['image'] = $this->img($request->image, 'images/users/');
-        // } else {
-        //     $form_data['image'] = $user->image;
-        // }
-        $form_data['email'] = Str::random(10) . '@app.com';
-        $form_data['password'] = bcrypt($form_data['email']);
-        $form_data['image'] = 'assets/images/user.png';
-        
+        if ($request->image) {
+            $user->image ? $this->deleteImg($user->image) : '';
+            $form_data['image'] = $this->img($request->image, 'images/users/');
+        } else {
+            $form_data['image'] = $user->image;
+        }
+
         $user->update($form_data);
         return response()->json(__('User Updated Successfully'));
     } //end of update
-
 
     public function destroy(User $user)
     {

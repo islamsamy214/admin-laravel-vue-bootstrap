@@ -4,8 +4,6 @@
         <create-form
             :errors="errors"
             :isLoading="isLoading"
-            :teams="teams"
-            :roles="roles"
             @submitUser="submitUser"
         ></create-form>
     </div>
@@ -19,8 +17,6 @@ export default {
         return {
             errors: null,
             isLoading: false,
-            teams: null,    
-            roles: null,
         };
     }, //end of data
 
@@ -50,18 +46,5 @@ export default {
                 });
         }, //end of submtting the form
     }, //end of mehtods
-
-    created() {
-        this.isLoading = true;
-        axios
-            .get("/api/admin/users/create")
-            .then((response) => {
-                this.teams = response.data.teams;
-                this.roles = response.data.roles;
-            })
-            .then(() => {
-                this.isLoading = false;
-            });
-    }, //end of created
 };
 </script>

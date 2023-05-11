@@ -12,7 +12,7 @@ Route::group(['middleware' => 'admin:sanctum', 'as' => 'admin.'], function () {
     //dashboard
     Route::get('dashboard', [DashboardController::class, 'index']);
     //users
-    Route::resource('users', UserController::class)->except(['show']);
+    Route::resource('users', UserController::class)->except(['show','create']);
     //settings
     Route::put('settings', [SettingController::class, 'update'])->name('settings.update');
 });

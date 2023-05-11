@@ -16,22 +16,25 @@
                     >
                         <img
                             src="/Logo.svg"
-                            class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}"
+                            class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|} mx-auto d-block"
                             alt=""
                         />
                     </router-link>
                 </li>
-                <!-- <li class="nav-item">
+                <li class="nav-item">
                     <router-link
                         class="nav-link"
+                        :to="{ name: 'admin.dashboard' }"
                         :class="{
                             active:
                                 this.$route.fullPath.split('/')[2] ==
                                 'dashboard',
                         }"
-                        :to="{ name: 'admin.dashboard' }"
                     >
-                        Dashboard <span class="sr-only">(current)</span>
+                        <h5 class="d-flex align-items-center">
+                            <Icon icon="tabler:layout-dashboard" />
+                            <span>Dashboard</span>
+                        </h5>
                     </router-link>
                 </li>
                 <li class="nav-item">
@@ -44,46 +47,17 @@
                                 'settings',
                         }"
                     >
-                        Settings
+                        <h5 class="d-flex align-items-center">
+                            <Icon icon="bi:gear" />
+                            <span>Settings</span>
+                        </h5>
                     </router-link>
                 </li>
                 <h6
                     class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
                 >
                     <span>Collections</span>
-                </h6> -->
-
-                <li class="nav-item">
-                    <router-link
-                        class="nav-link"
-                        :to="{ name: 'admin.teams' }"
-                        :class="{
-                            active:
-                                this.$route.fullPath.split('/')[2] == 'teams',
-                        }"
-                    >
-                        <h5 class="d-flex align-items-center">
-                            <Icon icon="ph:microsoft-teams-logo-duotone" />
-                            <span>Teams</span>
-                        </h5>
-                    </router-link>
-                </li>
-
-                <li class="nav-item">
-                    <router-link
-                        class="nav-link"
-                        :to="{ name: 'admin.roles' }"
-                        :class="{
-                            active:
-                                this.$route.fullPath.split('/')[2] == 'roles',
-                        }"
-                    >
-                        <h5 class="d-flex align-items-center">
-                            <Icon icon="solar:clapperboard-open-play-broken" />
-                            <span>Roles</span>
-                        </h5>
-                    </router-link>
-                </li>
+                </h6>
 
                 <li class="nav-item">
                     <router-link
@@ -100,29 +74,13 @@
                         </h5>
                     </router-link>
                 </li>
-
-                <li class="nav-item">
-                    <router-link
-                        class="nav-link"
-                        :to="{ name: 'admin.rounds' }"
-                        :class="{
-                            active:
-                                this.$route.fullPath.split('/')[2] == 'rounds',
-                        }"
-                    >
-                        <h5 class="d-flex align-items-center">
-                            <Icon icon="ic:round-30fps-select" />
-                            <span>Rounds</span>
-                        </h5>
-                    </router-link>
-                </li>
             </ul>
             <ul class="nav flex-column">
                 <li class="nav-item">
                     <div class="nav-link">
                         <h6 class="d-flex align-items-center">
                             <Icon icon="ph:user-bold" />
-                            <span>{{user.name}}</span>
+                            <span>{{ user.name }}</span>
                         </h6>
                     </div>
                 </li>
@@ -244,7 +202,7 @@ export default {
 svg {
     margin: 0 10px;
 }
-h5{
+h5 {
     opacity: 0.8;
 }
 </style>

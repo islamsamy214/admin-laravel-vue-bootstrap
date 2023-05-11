@@ -19,8 +19,6 @@ import RoundPage from "./../pages/admin/rounds/index/RoundPage.vue";
 import CreateRound from "./../pages/admin/rounds/create/CreateRound.vue";
 import EditRound from "./../pages/admin/rounds/edit/EditRound.vue";
 
-
-
 const admin = [
     ////////////////////////////////// admin routes ////////////////////////////
     //dashboard
@@ -54,65 +52,6 @@ const admin = [
         path: "settings",
         component: SettingPage,
     },
-    // teams
-    {
-        name: "admin.teams",
-        path: "teams",
-        component: TeamPage,
-        props: true,
-    },
-    {
-        name: "admin.teams.create",
-        path: "teams/add",
-        component: CreateTeam,
-        props: true,
-    },
-    {
-        name: "admin.teams.edit",
-        path: "teams/edit",
-        component: EditTeam,
-        props: true,
-    },
-    // roles
-    {
-        name: "admin.roles",
-        path: "roles",
-        component: RolePage,
-        props: true,
-    },
-    {
-        name: "admin.roles.create",
-        path: "roles/add",
-        component: CreateRole,
-        props: true,
-    },
-    {
-        name: "admin.roles.edit",
-        path: "roles/edit",
-        component: EditRole,
-        props: true,
-    },
-    //rounds
-    {
-        name: "admin.rounds",
-        path: "rounds",
-        component: RoundPage,
-        props: true,
-    },
-    {
-        name: "admin.rounds.create",
-        path: "rounds/add",
-        component: CreateRound,
-        props: true,
-    },
-    {
-        name: "admin.rounds.edit",
-        path: "rounds/edit",
-        component: EditRound,
-        props: true,
-    },
-
-
 ];
 
 export default admin;

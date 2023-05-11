@@ -76,7 +76,6 @@
                                         type="password"
                                         class="form-control"
                                         name="password"
-                                        required
                                         autocomplete="new-password"
                                         v-model="password"
                                     />
@@ -96,7 +95,6 @@
                                         type="password"
                                         class="form-control"
                                         name="password_confirmation"
-                                        required
                                         autocomplete="new-password"
                                         v-model="password_confirmation"
                                     />
@@ -208,13 +206,7 @@
 
 <script>
 export default {
-    props: [
-        "isLoading",
-        "errors",
-        "oldName",
-        "oldEmail",
-        "oldRole",
-    ],
+    props: ["isLoading", "errors", "oldName", "oldEmail", "oldRole"],
 
     emits: ["submitUser"],
 
@@ -282,7 +274,9 @@ export default {
             formData.append("name", this.name);
             formData.append("email", this.email);
             formData.append("role", this.role);
-            formData.append("password", this.password);
+            if (this.password) {
+                formData.append("password", this.password);
+            }
             formData.append(
                 "password_confirmation",
                 this.password_confirmation

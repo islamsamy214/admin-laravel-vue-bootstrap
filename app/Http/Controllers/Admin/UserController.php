@@ -10,6 +10,7 @@ use App\Http\Requests\Admin\User\StoreUserRequest;
 use App\Http\Requests\Admin\User\UpdateUserRequest;
 use App\Mail\TestMail;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -78,7 +79,7 @@ class UserController extends Controller
     {
         //encrypt password
         $form_data = $request->except(['password', 'password_confirmation', 'image']);
-        $form_data['password'] = bcrypt($request->password);
+        if ($request->password) $form_data['password'] = Hash::make($request->password);
 
         //image uploading
         if ($request->image) {
@@ -87,7 +88,6 @@ class UserController extends Controller
         } else {
             $form_data['image'] = $user->image;
         }
-
         $user->update($form_data);
         return response()->json(__('User Updated Successfully'));
     } //end of update

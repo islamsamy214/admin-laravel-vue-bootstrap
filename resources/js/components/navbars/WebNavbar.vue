@@ -2,7 +2,7 @@
   <div>
     <nav class="navbar fixed-top navbar-expand-md navbar-light bg-white shadow-sm mb-2">
       <div class="container">
-        <router-link class="navbar-brand" to="/"> {{ siteName }} </router-link>
+        <router-link class="navbar-brand" to="/"> Blogs </router-link>
         <button
           class="navbar-toggler"
           type="button"
@@ -87,12 +87,6 @@
 import { mapGetters } from "vuex";
 
 export default {
-  data() {
-    return {
-      siteName: null,
-    };
-  }, //end of data
-
   computed: {
     ...mapGetters({ user: "webAuth/user", isLoggedIn: "webAuth/isLoggedIn" }),
   }, //end of computed
@@ -106,21 +100,7 @@ export default {
         }
       });
     }, //end of logout
-
-    retriveSiteName() {
-      axios
-        .get("/api/admin/settings")
-        .then((response) => {
-          this.siteName = response.data.site_name;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }, //end of retrive siteName
   }, //end of methods
 
-  created() {
-    this.retriveSiteName();
-  }, //end of created
 };
 </script>

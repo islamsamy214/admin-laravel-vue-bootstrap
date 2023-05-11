@@ -103,12 +103,6 @@ import store from "../../../store";
 import { mapGetters } from "vuex";
 
 export default {
-    data() {
-        return {
-            siteName: null,
-        };
-    }, //end of data
-
     computed: {
         ...mapGetters({
             user: "adminAuth/user",
@@ -125,21 +119,7 @@ export default {
                 }
             });
         }, //end of logout
-
-        retriveSiteName() {
-            axios
-                .get("/api/admin/settings")
-                .then((response) => {
-                    this.siteName = response.data.site_name;
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-        }, //end of retrive siteName
     },
-    created() {
-        this.retriveSiteName();
-    }, //end of created
 };
 </script>
 

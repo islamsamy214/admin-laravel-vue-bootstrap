@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\SeoController;
 
 //don't forget it has an admin prefix
 require __DIR__ . '/auth.php';
@@ -13,9 +13,6 @@ Route::group(['middleware' => 'admin:sanctum', 'as' => 'admin.'], function () {
     Route::get('dashboard', [DashboardController::class, 'index']);
     //users
     Route::resource('users', UserController::class)->except(['show','create']);
-    //settings
-    Route::put('settings', [SettingController::class, 'update'])->name('settings.update');
+    //seos
+    Route::resource('seos', SeoController::class)->only(['index','update']);
 });
-
-//settings
-Route::get('settings', [SettingController::class, 'retreve'])->name('settings.retreve');

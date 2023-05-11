@@ -261,7 +261,7 @@ export default {
             } else {
                 this.sameValue = false;
             }
-        }, //end of password
+        }, //end of image
     }, //end of watch
 
     methods: {

@@ -12,52 +12,23 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $guarded = [];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
-    ];
+    ]; //end of hidden
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array<int, string>
-     */
-    protected $appends = ['image_path'];
+    protected $appends = [
+        'image_path'
+    ]; //end of appends
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
-    ];
-
+    ]; //end of casts
 
     public function getImagePathAttribute()
     {
         return asset($this->image);
     } //end of retreving image directly
-
-    public function role()
-    {
-        return $this->belongsTo(Role::class);
-    } // end of role relationship
-
-    public function team()
-    {
-        return $this->belongsTo(Team::class);
-    } // end of team relationship
 }

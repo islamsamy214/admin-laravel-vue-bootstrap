@@ -15,9 +15,12 @@ class Admin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ((!auth()->user()) || auth()->user()->type != 'admin') {
+        $user = auth()->user();
+        
+        if (!$user || !in_array($user->role, ['admin', 'super_admin'])) {
             return response()->json(['message' => 'You are not authorized to access this route'], 401);
         }
+        
         return $next($request);
     }
 }

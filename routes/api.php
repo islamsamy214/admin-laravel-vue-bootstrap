@@ -19,15 +19,5 @@ use Illuminate\Support\Facades\Route;
 require __DIR__ . '/auth.php';
 
 Route::group(['as' => 'api.'], function () {
-    // rounds
-    Route::get('rounds', [RoundController::class, 'index'])->name('rounds.index');
-    Route::put('rounds/{round}', [RoundController::class, 'update'])->name('rounds.update');
-    // roles
-    Route::get('roles/{role}', [RoleController::class, 'show'])->name('roles.show');
-    Route::put('roles/{role}', [RoleController::class, 'update'])->name('roles.update');
-    // teams
-    Route::get('teams', [TeamController::class, 'index'])->name('teams.index');
-    Route::get('teams/{team}', [TeamController::class, 'show'])->name('teams.show');
-    Route::get('presentation/{team}', [TeamController::class, 'getPresentation'])->name('presentation.show');
-    Route::put('presentation/{team}', [TeamController::class, 'updatePresentation'])->name('presentation.update');
+    // write your public APIs here
 });

@@ -12,10 +12,10 @@ class HomePage extends Model
     protected $guarded = [];
 
     protected $appends = [
-        'hero_image_url',
+        'hero_image_path',
     ]; // end $appends
 
-    public function getHeroImageUrlAttribute()
+    public function getHeroImagePathAttribute()
     {
         return $this->hero_image ? asset($this->hero_image) : null;
     } // end getHeroImageUrlAttribute

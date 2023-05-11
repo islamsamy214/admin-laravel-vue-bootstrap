@@ -24,12 +24,10 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            // 'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($this->user)],
-            // 'password' => ['required', 'string', 'min:8', 'confirmed'],
-            // 'image' => ['mimes:jpeg,jpg,png,gif'],
-            'team_id' => ['required', 'exists:teams,id'],
-            'role_id' => ['required', 'exists:roles,id'],
-            'type' => ['required', 'in:judge,member,admin'],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($this->user)],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'image' => ['mimes:jpeg,jpg,png,gif'],
+            'role' => ['required', 'in:user,admin'],
         ];
     }
 }

@@ -39,9 +39,9 @@ Route::group(['as' => 'admin.'], function () {
 Route::group(['middleware' => 'admin:sanctum', 'as' => 'admin.'], function () {
     // auth user
     Route::get('/user', function (Request $request) {
-        return $request->user();
+        return ['user' => $request->user()];
     })->name('user');
-    
+
     Route::get('verify-email', EmailVerificationPromptController::class)
         ->name('verification.notice');
 

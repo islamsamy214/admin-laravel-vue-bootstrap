@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col-md-6 col-sm-12">
-      <h3>TOTAL : {{ total }}</h3>
+      <h3>{{$t('total')}} : {{ total }}</h3>
     </div>
     <div class="col-md-6 col-sm-12">
       <div class="pagination justify-content-end">
@@ -13,7 +13,7 @@
                 href=""
                 @click.prevent="$emit('fill', currentPage - 1)"
                 v-if="currentPage != 1"
-                >Previous</a
+                >{{$t('previous')}}</a
               >
             </li>
             <li class="page-item" v-for="page in pages" :key="page">
@@ -31,7 +31,7 @@
                 href=""
                 @click.prevent="$emit('fill', currentPage + 1)"
                 v-if="currentPage != pages.length"
-                >Next</a
+                >{{$t('next')}}</a
               >
             </li>
           </ul>

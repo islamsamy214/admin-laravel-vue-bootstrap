@@ -33,7 +33,7 @@
                     >
                         <h5 class="d-flex align-items-center">
                             <Icon icon="tabler:layout-dashboard" />
-                            <span>Dashboard</span>
+                            <span>{{ $t("dashboard") }}</span>
                         </h5>
                     </router-link>
                 </li>
@@ -49,14 +49,14 @@
                     >
                         <h5 class="d-flex align-items-center">
                             <Icon icon="bi:gear" />
-                            <span>Settings</span>
+                            <span>{{ $t("settings") }}</span>
                         </h5>
                     </router-link>
                 </li>
                 <h6
                     class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
                 >
-                    <span>Collections</span>
+                    <span>{{$t('collections')}}</span>
                 </h6>
 
                 <li class="nav-item">
@@ -70,7 +70,7 @@
                     >
                         <h5 class="d-flex align-items-center">
                             <Icon icon="solar:users-group-rounded-broken" />
-                            <span>Users</span>
+                            <span>{{ $t("users") }}</span>
                         </h5>
                     </router-link>
                 </li>
@@ -89,7 +89,7 @@
                     <div class="nav-link" @click="logout">
                         <h5 class="d-flex align-items-center text-danger">
                             <Icon icon="solar:logout-outline" />
-                            <span>Logout</span>
+                            <span>{{$t("logout")}}</span>
                         </h5>
                     </div>
                 </li>

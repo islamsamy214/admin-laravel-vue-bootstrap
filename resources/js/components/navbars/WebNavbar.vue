@@ -59,7 +59,7 @@
                   class="dropdown-menu dropdown-menu-right"
                   aria-labelledby="navbarDropdown"
                 >
-                  <button class="dropdown-item" @click="logout">Logout</button>
+                  <button class="dropdown-item" @click="logout">{{$t("logout")}}</button>
                 </div>
               </li>
             </div>

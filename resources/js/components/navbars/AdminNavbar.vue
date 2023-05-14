@@ -39,7 +39,7 @@
                             class="dropdown-item text-right"
                             @click="logout"
                         >
-                            Logout
+                            {{$t("logout")}}
                         </button>
                     </div>
                 </li>

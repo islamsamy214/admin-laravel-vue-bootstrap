@@ -17,7 +17,7 @@ const router = createRouter({
             component: WebLayout,
             children: web,
             // redirect: { name: "admin.dashboard" }
-            redirect: { name: "admin.teams" }
+            redirect: { name: "admin.dashboard" }
         },
         {
             name: "admin",
@@ -25,7 +25,7 @@ const router = createRouter({
             component: AdminLayout,
             children: admin,
             // redirect: { name: "admin.dashboard" }
-            redirect: { name: "admin.teams" }
+            redirect: { name: "admin.dashboard" }
         },
         // admin auth
         {

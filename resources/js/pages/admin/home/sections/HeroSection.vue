@@ -13,7 +13,7 @@
         />
       </div>
       <div class="form-group">
-        <label for="hero_image">Image</label>
+        <label for="hero_image">{{$t('image')}}</label>
         <img
           :src="hero_image_url"
           class="rounded mx-auto d-block img-thumbnail img-fluid my-3 mw-100"

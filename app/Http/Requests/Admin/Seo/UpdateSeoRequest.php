@@ -22,9 +22,9 @@ class UpdateSeoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string', 'max:6375'],
-            'keywords' => ['required', 'string', 'max:6375'],
+            'title' => ['required', 'string', 'max:510'],
+            'description' => ['required', 'string', 'max:12750'],
+            'keywords' => ['required', 'string', 'max:12750'],
             'image' => ['nullable', 'image', 'max:2048'],
         ];
     }

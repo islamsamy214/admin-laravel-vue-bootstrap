@@ -1,10 +1,10 @@
 <template>
     <div>
-        <nav class="navbar navbar-light bg-light">
+        <nav class="navbar navbar-light bg-light d-flex justify-content-center">
             <span class="navbar-text">
-                &copy; Copyrights 2021
-                <a href="https://github.com/islamsamy214" target="_blank"
-                    >Inteligencia</a
+                &copy; {{ new Date().getFullYear() }}
+                <a href="http://islamsamy214.github.io/" target="_blank"
+                    >Islam Samy. {{$t('allRightsReserved')}}</a
                 >
             </span>
         </nav>

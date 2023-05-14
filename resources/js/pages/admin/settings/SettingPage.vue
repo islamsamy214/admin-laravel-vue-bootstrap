@@ -1,11 +1,11 @@
 <template>
     <div>
-        <page-header>Settings</page-header>
+        <page-header>{{ $t("settings") }}</page-header>
         <loading-ui v-if="pageLoading"></loading-ui>
         <div class="row justify-content-left m-2" v-else>
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Edit Seo's</div>
+                    <div class="card-header">{{$t('edit')}} Seo's</div>
                     <div class="card-body">
                         <form
                             @submit.prevent="fillForm"
@@ -17,7 +17,7 @@
                                     class="col-md-2 col-form-label text-md-right"
                                     >Title</label
                                 >
-                                <div class="col-md-9">
+                                <div class="col">
                                     <input
                                         id="title"
                                         type="text"
@@ -26,7 +26,19 @@
                                         required
                                         autocomplete="title"
                                         autofocus
-                                        v-model="title"
+                                        v-model="title.en"
+                                    />
+                                </div>
+                                <div class="col">
+                                    <input
+                                        id="title"
+                                        type="text"
+                                        class="form-control"
+                                        name="title"
+                                        required
+                                        autocomplete="title"
+                                        autofocus
+                                        v-model="title.ar"
                                     />
                                 </div>
                             </div>
@@ -38,15 +50,26 @@
                                     >Description</label
                                 >
 
-                                <div class="col-md-9">
+                                <div class="col">
                                     <textarea
                                         id="description"
-                                        type="description"
+                                        type="text"
                                         class="form-control"
                                         name="description"
                                         required
                                         autocomplete="description"
-                                        v-model="description"
+                                        v-model="description.en"
+                                    ></textarea>
+                                </div>
+                                <div class="col">
+                                    <textarea
+                                        id="description"
+                                        type="text"
+                                        class="form-control"
+                                        name="description"
+                                        required
+                                        autocomplete="description"
+                                        v-model="description.ar"
                                     ></textarea>
                                 </div>
                             </div>
@@ -58,7 +81,7 @@
                                     >Keywords</label
                                 >
 
-                                <div class="col-md-9">
+                                <div class="col">
                                     <textarea
                                         id="keywords"
                                         type="text"
@@ -75,10 +98,10 @@
                                 <label
                                     for="image"
                                     class="col-md-2 col-form-label text-md-right"
-                                    >Image</label
+                                    >{{$t('image')}}</label
                                 >
 
-                                <div class="col-md-9">
+                                <div class="col">
                                     <input
                                         id="image"
                                         type="file"
@@ -149,9 +172,8 @@
                                     <button
                                         type="submit"
                                         class="btn btn-primary"
-                                        :disabled="isLoading"
                                     >
-                                        Submit
+                                        {{$t('submit')}}
                                     </button>
                                 </div>
                             </div>
@@ -172,7 +194,6 @@ export default {
             keywords: null,
             image: null,
             errors: null,
-            isLoading: false,
         };
     }, //end of data
     methods: {
@@ -197,8 +218,8 @@ export default {
 
         fillForm() {
             let formData = new FormData();
-            formData.append("title", this.title);
-            formData.append("description", this.description);
+            formData.append("title", JSON.stringify(this.title));
+            formData.append("description", JSON.stringify(this.description));
             formData.append("keywords", this.keywords);
             formData.append("_method", "PUT");
             if (this.image) {
@@ -216,16 +237,14 @@ export default {
                             type: "success",
                             layout: "topRight",
                             timeout: "2000",
-                            text: "Settings Updated",
+                            text:
+                                this.$t("updated") + " " + this.$t("settings"),
                         }).show();
                         this.errors = null;
                     }
                 })
                 .catch((errors) => {
                     this.errors = errors.response.data.errors;
-                })
-                .then(() => {
-                    this.isLoading = true;
                 });
         }, //end of submtting the form
     }, //end of mehtods

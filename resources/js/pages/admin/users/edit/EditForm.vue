@@ -3,7 +3,7 @@
         <div class="row justify-content-left m-2">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Edit User</div>
+                    <div class="card-header">{{ $t("edit") }} {{$t('user')}}</div>
                     <div class="card-body">
                         <form
                             @submit.prevent="fillForm"
@@ -13,7 +13,7 @@
                                 <label
                                     for="name"
                                     class="col-md-2 col-form-label text-md-right"
-                                    >Name</label
+                                    >{{ $t("name") }}</label
                                 >
                                 <div class="col-md-9">
                                     <input
@@ -33,7 +33,7 @@
                                 <label
                                     for="email"
                                     class="col-md-2 col-form-label text-md-right"
-                                    >E-Mail Address</label
+                                    >{{ $t("email") }}</label
                                 >
 
                                 <div class="col-md-9">
@@ -53,7 +53,7 @@
                                 <label
                                     for="name"
                                     class="col-md-2 col-form-label text-md-right"
-                                    >Role</label
+                                    >{{ $t("role") }}</label
                                 >
                                 <div class="col-md-9">
                                     <select class="form-control" v-model="role">
@@ -67,7 +67,7 @@
                                 <label
                                     for="password"
                                     class="col-md-2 col-form-label text-md-right"
-                                    >Password</label
+                                    >{{ $t("password") }}</label
                                 >
 
                                 <div class="col-md-9">
@@ -86,7 +86,7 @@
                                 <label
                                     for="password-confirm"
                                     class="col-md-2 col-form-label text-md-right"
-                                    >Confirm Password</label
+                                    >{{ $t("passwordConfirmation") }}</label
                                 >
 
                                 <div class="col-md-9">
@@ -105,7 +105,7 @@
                                 <label
                                     for="image"
                                     class="col-md-2 col-form-label text-md-right"
-                                    >Image</label
+                                    >{{ $t("image") }}</label
                                 >
 
                                 <div class="col-md-9">
@@ -113,7 +113,7 @@
                                         id="image"
                                         type="file"
                                         class="form-control"
-                                        name="Image"
+                                        name="image"
                                         @change="uploadImage"
                                     />
                                 </div>
@@ -192,7 +192,7 @@
                                         class="btn btn-primary"
                                         :disabled="isLoading || sameValue"
                                     >
-                                        Submit
+                                        {{ $t("submit") }}
                                     </button>
                                 </div>
                             </div>

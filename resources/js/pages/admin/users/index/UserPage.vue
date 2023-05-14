@@ -1,7 +1,7 @@
 <template>
     <loading-ui v-if="pageLoading"></loading-ui>
     <div v-else>
-        <page-header>Users</page-header>
+        <page-header>{{$t('users')}}</page-header>
         <div class="row">
             <user-search
                 @submitSearch="submitSearch"

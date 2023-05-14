@@ -12,7 +12,7 @@
                   <label
                     for="email"
                     class="col-md-4 col-form-label text-md-right"
-                    >E-Mail Address</label
+                    >{{$t('email')}}</label
                   >
 
                   <div class="col-md-6">
@@ -33,7 +33,7 @@
                   <label
                     for="password"
                     class="col-md-4 col-form-label text-md-right"
-                    >Password</label
+                    >{{$t('password')}}</label
                   >
 
                   <div class="col-md-6">

@@ -8,7 +8,7 @@ const adminAuth = {
     state() {
         return {
             isLoggedIn: false,
-            user: {}
+            user: {},
         };
     },
     modules: {},

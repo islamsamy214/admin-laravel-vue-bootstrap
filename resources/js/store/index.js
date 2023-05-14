@@ -6,11 +6,20 @@ import mutations from "./mutations";
 import adminAuth from "./auth/admin/index";
 import webAuth from "./auth/web/index";
 
+const getCookie = (name) => {
+    const cookieValue = document.cookie.match(
+        `(^|;)\\s*${name}\\s*=\\s*([^;]+)`
+    );
+    return cookieValue ? cookieValue.pop() : null;
+};
+
 const store = createStore({
     namespaced: true,
 
     state() {
-        return {};
+        return {
+            locale: getCookie("locale") || "en",
+        };
     },
     modules: {
         adminAuth,

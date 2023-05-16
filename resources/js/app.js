@@ -8,9 +8,11 @@ import store from "./store/index";
 import { Icon } from "@iconify/vue";
 import messages from "./lang/locale.js";
 
+import CKEditor from "@ckeditor/ckeditor5-vue";
 import PageHeader from "./components/user-interface/admin-ui/PageHeader.vue";
 import LoadingUi from "./components/user-interface/LoadingUi.vue";
 import SectionHeader from "./components/user-interface/admin-ui/SectionHeader.vue";
+
 const app = createApp(App);
 const i18n = createI18n({
     locale: store.state.locale,
@@ -20,6 +22,7 @@ const i18n = createI18n({
 app.use(router);
 app.use(store);
 app.use(i18n);
+app.use(CKEditor);
 
 app.component("page-header", PageHeader);
 app.component("loading-ui", LoadingUi);

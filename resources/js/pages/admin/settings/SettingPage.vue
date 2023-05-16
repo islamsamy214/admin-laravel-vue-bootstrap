@@ -5,7 +5,7 @@
         <div class="row justify-content-left m-2" v-else>
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">{{$t('edit')}} Seo's</div>
+                    <div class="card-header">{{ $t("edit") }} Seo's</div>
                     <div class="card-body">
                         <form
                             @submit.prevent="fillForm"
@@ -49,28 +49,19 @@
                                     class="col-md-2 col-form-label text-md-right"
                                     >Description</label
                                 >
-
-                                <div class="col">
-                                    <textarea
-                                        id="description"
-                                        type="text"
-                                        class="form-control"
-                                        name="description"
-                                        required
-                                        autocomplete="description"
+                                <div class="col-5">
+                                    <ckeditor
+                                        :editor="editor"
                                         v-model="description.en"
-                                    ></textarea>
+                                        :config="editorConfig"
+                                    ></ckeditor>
                                 </div>
-                                <div class="col">
-                                    <textarea
-                                        id="description"
-                                        type="text"
-                                        class="form-control"
-                                        name="description"
-                                        required
-                                        autocomplete="description"
+                                <div class="col-5">
+                                    <ckeditor
+                                        :editor="editor"
                                         v-model="description.ar"
-                                    ></textarea>
+                                        :config="editorConfig"
+                                    ></ckeditor>
                                 </div>
                             </div>
 
@@ -98,7 +89,7 @@
                                 <label
                                     for="image"
                                     class="col-md-2 col-form-label text-md-right"
-                                    >{{$t('image')}}</label
+                                    >{{ $t("image") }}</label
                                 >
 
                                 <div class="col">
@@ -173,7 +164,7 @@
                                         type="submit"
                                         class="btn btn-primary"
                                     >
-                                        {{$t('submit')}}
+                                        {{ $t("submit") }}
                                     </button>
                                 </div>
                             </div>
@@ -185,6 +176,8 @@
     </div>
 </template>
 <script>
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+
 export default {
     data() {
         return {
@@ -194,8 +187,29 @@ export default {
             keywords: null,
             image: null,
             errors: null,
+            // ckeditor
+            editor: ClassicEditor,
+            editorConfig: {
+                toolbar: [
+                    "heading",
+                    "|",
+                    "bold",
+                    "italic",
+                    "link",
+                    "bulletedList",
+                    "numberedList",
+                    "blockQuote",
+                    "insertTable",
+                    "undo",
+                    "redo",
+                    "mediaEmbed",
+                    "indent",
+                    "outdent",
+                ],
+            },
         };
     }, //end of data
+
     methods: {
         uploadImage(event) {
             this.image = event.currentTarget.files[0];
@@ -249,7 +263,7 @@ export default {
         }, //end of submtting the form
     }, //end of mehtods
 
-    created() {
+    mounted() {
         this.fill();
     }, //end of created
 };

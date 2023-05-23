@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import WebFooter from "../user-interface/web-ui/WebFooter.vue";
-import WebNavbar from "./../navbars/WebNavbar.vue";
+import WebFooter from "../components/user-interface/web-ui/WebFooter.vue";
+import WebNavbar from "../components/navbars/WebNavbar.vue";
 export default {
   components: {
     WebNavbar,

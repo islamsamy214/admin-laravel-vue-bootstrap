@@ -50,18 +50,16 @@
                                     >Description</label
                                 >
                                 <div class="col-5">
-                                    <ckeditor
-                                        :editor="editor"
+                                    <Editor
                                         v-model="description.en"
-                                        :config="editorConfig"
-                                    ></ckeditor>
+                                        editorStyle="height: 320px"
+                                    />
                                 </div>
                                 <div class="col-5">
-                                    <ckeditor
-                                        :editor="editor"
+                                    <Editor
                                         v-model="description.ar"
-                                        :config="editorConfig"
-                                    ></ckeditor>
+                                        editorStyle="height: 320px"
+                                    />
                                 </div>
                             </div>
 
@@ -176,8 +174,6 @@
     </div>
 </template>
 <script>
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-
 export default {
     data() {
         return {
@@ -187,26 +183,6 @@ export default {
             keywords: null,
             image: null,
             errors: null,
-            // ckeditor
-            editor: ClassicEditor,
-            editorConfig: {
-                toolbar: [
-                    "heading",
-                    "|",
-                    "bold",
-                    "italic",
-                    "link",
-                    "bulletedList",
-                    "numberedList",
-                    "blockQuote",
-                    "insertTable",
-                    "undo",
-                    "redo",
-                    "mediaEmbed",
-                    "indent",
-                    "outdent",
-                ],
-            },
         };
     }, //end of data
 

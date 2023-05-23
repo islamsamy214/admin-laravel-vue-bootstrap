@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-import WebLayout from "./../components/layouts/WebLayout.vue";
-import AdminLayout from "./../components/layouts/AdminLayout.vue";
+import WebLayout from "../layouts/WebLayout.vue";
+import AdminLayout from "../layouts/AdminLayout.vue";
 import LoginPage from "./../pages/admin/auth/LoginPage.vue";
 import NotFound from "./../components/user-interface/NotFound.vue";
 

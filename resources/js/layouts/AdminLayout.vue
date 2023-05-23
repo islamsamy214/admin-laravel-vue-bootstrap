@@ -23,9 +23,9 @@
 
 <script>
 // import AdminNavbar from "./../navbars/AdminNavbar.vue";
-import AdminFooter from "../user-interface/admin-ui/AdminFooter.vue";
-import SideBar from "../user-interface/admin-ui/SideBar.vue";
-import store from "../../store";
+import AdminFooter from "../components/user-interface/admin-ui/AdminFooter.vue";
+import SideBar from "../components/user-interface/admin-ui/SideBar.vue";
+import store from "../store";
 
 export default {
     components: {

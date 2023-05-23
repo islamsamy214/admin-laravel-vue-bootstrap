@@ -10,8 +10,6 @@ export default {
     data() {
         return {
             pageLoading: true,
-
-            
         };
     }, //end of data
 
